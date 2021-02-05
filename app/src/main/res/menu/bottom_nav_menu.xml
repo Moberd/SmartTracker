@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    android:layout_height="50dp"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/database_icon"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_article_24"
+        android:title="Recents"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/profile_icon"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="Profile"
+        app:showAsAction="ifRoom" />
+</menu>
