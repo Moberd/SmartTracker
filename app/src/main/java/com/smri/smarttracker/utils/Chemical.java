@@ -2,19 +2,26 @@ package com.smri.smarttracker.utils;
 
 public class Chemical {
 
-    String name;
-    String creator;
-    String description;
-    int id;
+    public String name;
+    public String creator;
+    public String description;
+    public int id;
 
-    Chemical(String name, String creator, String description, int id){
-        name = this.name;
-        creator = this.creator;
-        description = this.description;
-        id = this.id;
+    public Chemical(String name, String creator, String description, int id){
+        this.name = name;
+        this.creator = creator;
+        this.description = description;
+        this.id = this.id;
     }
 
-    Chemical(){}
+    public Chemical(String name, String description){
+        this.name = name;
+        this.description = description;
+        creator = "";
+        id = 0;
+    }
+
+    public Chemical(){}
 
     public int getId() {
         return id;
