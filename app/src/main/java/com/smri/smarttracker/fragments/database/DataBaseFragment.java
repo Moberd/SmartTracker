@@ -1,5 +1,6 @@
 package com.smri.smarttracker.fragments.database;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,6 +39,17 @@ public class DataBaseFragment extends Fragment {
         recyclerView = view.findViewById(R.id.database_chem);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
+
+//        CardView cardView = view.findViewById(R.id.cardView);
+//        cardView.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent intent = new Intent(getActivity(), ChemEditor.class);
+//                startActivity(intent);
+//            }
+//        });
 
         List<Chemical> listChems = new ArrayList<Chemical>();
         for (int i = 0; i<10; i++) {
