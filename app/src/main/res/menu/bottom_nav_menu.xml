@@ -8,7 +8,7 @@
         android:id="@+id/database_icon"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_article_24"
-        android:title="Recents"
+        android:title="Database"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/profile_icon"
