@@ -8,11 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.smri.smarttracker.R;
-import com.smri.smarttracker.fragments.database.ChemEditor;
+import com.smri.smarttracker.activities.ChemEditor;
 import com.smri.smarttracker.utils.Chemical;
 
 import java.util.List;

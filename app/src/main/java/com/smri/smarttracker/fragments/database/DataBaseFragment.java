@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.smri.smarttracker.R;
+import com.smri.smarttracker.activities.ChemEditor;
 import com.smri.smarttracker.fragments.database.adapter.ChemicalsAdapter;
 import com.smri.smarttracker.utils.Chemical;
 import com.smri.smarttracker.utils.FabFragmentListener;
@@ -40,17 +41,6 @@ public class DataBaseFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-
-//        CardView cardView = view.findViewById(R.id.cardView);
-//        cardView.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v)
-//            {
-//                Intent intent = new Intent(getActivity(), ChemEditor.class);
-//                startActivity(intent);
-//            }
-//        });
-
         List<Chemical> listChems = new ArrayList<Chemical>();
         for (int i = 0; i<10; i++) {
             listChems.add(new Chemical("Item " + (i + 1), "This is description of item " + (i+1)));
@@ -63,10 +53,7 @@ public class DataBaseFragment extends Fragment {
 
     public void addNewChemical(){
         Toast.makeText(getContext(), "DATABASE CLICKED", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getContext(), ChemEditor.class);
+        getContext().startActivity(intent);
     }
-
-
-//    void myFunction() {
-//        FloatingActionButton fab = listener.getFab();
-//    }
 }

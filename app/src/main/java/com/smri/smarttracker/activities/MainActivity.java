@@ -1,4 +1,4 @@
-package com.smri.smarttracker;
+package com.smri.smarttracker.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.smri.smarttracker.R;
 import com.smri.smarttracker.fragments.database.DataBaseFragment;
 import com.smri.smarttracker.fragments.profile.ProfileFragment;
 import com.smri.smarttracker.utils.FabFragmentListener;
