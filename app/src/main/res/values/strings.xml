@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SmartTracker</string>
+    <string name="your_login">E-mail</string>
+    <string name="your_password">Пароль</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="log_in">Войти</string>
+    <string name="create_new_account">Зарегистрироваться</string>
+    <string name="restore">Восстановить</string>
 </resources>

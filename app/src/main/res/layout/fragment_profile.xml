@@ -12,4 +12,12 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="30dp"/>
 
+    <Button
+        android:id="@+id/singBtn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_gravity="center|center_vertical"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="Sign in"/>
+
 </LinearLayout>
