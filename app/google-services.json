@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "284369037317",
+    "project_id": "smarttracker-156b1",
+    "storage_bucket": "smarttracker-156b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284369037317:android:100b365f3efe18b75bd46c",
+        "android_client_info": {
+          "package_name": "com.smri.smarttracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284369037317-ml5efmjaushk9ts0g234bmrcl9lqso1c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smri.smarttracker",
+            "certificate_hash": "a37ba708a671e01bc0bfc067252cebccbc605532"
+          }
+        },
+        {
+          "client_id": "284369037317-a6392bq6q6s7f2te8v1pq90p3hg64q78.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC3Wmu8IfzUVFlJLIp_DipbglryQhXyrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284369037317-a6392bq6q6s7f2te8v1pq90p3hg64q78.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

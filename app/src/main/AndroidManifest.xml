@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.ChemEditor"></activity>
-        <activity android:name=".fragments.profile.SignInOut"></activity>
+        <activity android:name=".activities.login.LoginActivity"></activity>
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
