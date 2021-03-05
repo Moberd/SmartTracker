@@ -11,7 +11,7 @@ public class Chemical {
         this.name = name;
         this.creator = creator;
         this.description = description;
-        this.id = this.id;
+        this.id = id;
     }
 
     public Chemical(String name, String description){
