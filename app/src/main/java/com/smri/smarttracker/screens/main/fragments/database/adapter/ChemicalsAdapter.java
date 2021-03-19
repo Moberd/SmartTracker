@@ -14,6 +14,7 @@ import com.smri.smarttracker.R;
 import com.smri.smarttracker.screens.editor.ChemEditor;
 import com.smri.smarttracker.utils.Chemical;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.ViewHolder> {
@@ -44,6 +45,7 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
         String _name = itemList.getName();
         holder.name.setText(itemList.getName());
         holder.description.setText(itemList.getDescription());
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +70,11 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
             name = (TextView) itemView.findViewById(R.id.name);
             description = (TextView) itemView.findViewById(R.id.description);
         }
+    }
+
+    public void updateItems(ArrayList<Chemical> items){
+        listItems = items;
+        notifyDataSetChanged();
     }
 
 }
