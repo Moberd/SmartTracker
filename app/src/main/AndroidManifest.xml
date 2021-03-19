@@ -11,14 +11,16 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.editor.ChemEditor"></activity>
         <activity android:name=".activities.login.LoginActivity"></activity>
-        <activity android:name=".activities.splash.SplashActivity">
+        <activity android:name=".activities.splash.SplashActivity" android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.main.MainActivity">
+        <activity
+            android:name=".activities.main.MainActivity"
+            >
         </activity>
     </application>
 
