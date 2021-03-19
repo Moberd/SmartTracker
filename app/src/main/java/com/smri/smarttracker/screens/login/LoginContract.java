@@ -1,4 +1,4 @@
-package com.smri.smarttracker.activities.login;
+package com.smri.smarttracker.screens.login;
 
 public interface LoginContract {
     interface View {

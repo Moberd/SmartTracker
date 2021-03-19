@@ -1,6 +1,4 @@
-package com.smri.smarttracker.activities.login;
-
-import com.smri.smarttracker.R;
+package com.smri.smarttracker.screens.login;
 
 public class LoginPresenter implements LoginContract.Presenter {
 
