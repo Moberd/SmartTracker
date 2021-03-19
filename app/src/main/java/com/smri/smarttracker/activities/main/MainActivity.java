@@ -1,4 +1,4 @@
-package com.smri.smarttracker.activities;
+package com.smri.smarttracker.activities.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,13 +7,12 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.smri.smarttracker.R;
-import com.smri.smarttracker.fragments.database.DataBaseFragment;
-import com.smri.smarttracker.fragments.profile.ProfileFragment;
+import com.smri.smarttracker.activities.main.fragments.database.DataBaseFragment;
+import com.smri.smarttracker.activities.main.fragments.profile.ProfileFragment;
 import com.smri.smarttracker.utils.FabFragmentListener;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, FabFragmentListener {

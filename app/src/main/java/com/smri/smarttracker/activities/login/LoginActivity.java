@@ -10,12 +10,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.smri.smarttracker.R;
-import com.smri.smarttracker.activities.MainActivity;
+import com.smri.smarttracker.activities.main.MainActivity;
+
+import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
@@ -30,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     EditText etLogin;
     EditText etPassword;
     ProgressBar pbLoading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -221,5 +225,43 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         }
     }
 
+    public void showToast(String message, ToastMode mode) {
+        switch (mode) {
+            case ERROR:
+                Toasty.error(
+                        this,
+                        message,
+                        Toast.LENGTH_SHORT,
+                        true
+                ).show();
+                break;
+            case SUCCESS:
+                Toasty.success(
+                        this,
+                        message,
+                        Toast.LENGTH_SHORT,
+                        true
+                ).show();
+                break;
+            case WARNING:
+                Toasty.warning(
+                    this,
+                    message,
+                    Toast.LENGTH_SHORT,
+                    true
+                ).show();
+                break;
+            case INFO:
+                Toasty.info(
+                    this,
+                    message,
+                    Toast.LENGTH_SHORT,
+                    true
+                ).show();
+                break;
+        }
+    }
+
     enum LayoutMode { LOGIN, REGISTRATION, RESTORING }
+    enum ToastMode { ERROR, SUCCESS, WARNING, INFO }
 }

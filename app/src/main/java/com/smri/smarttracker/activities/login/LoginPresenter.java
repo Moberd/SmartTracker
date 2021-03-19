@@ -1,5 +1,7 @@
 package com.smri.smarttracker.activities.login;
 
+import com.smri.smarttracker.R;
+
 public class LoginPresenter implements LoginContract.Presenter {
 
     private boolean viewIsAttached = false;
@@ -27,11 +29,11 @@ public class LoginPresenter implements LoginContract.Presenter {
     private boolean checkboxEmptiness(String loginText, String passText){
         boolean result = false;
         if (loginText.equals("")) {
-            //mView.showLoginError(App.instance.getString(R.string.edit_is_empty));
+            mView.showLoginError("Edit is empty"); //App.instance.getString(R.string.edit_is_empty)
             result = true;
         }
         if (passText.equals("")) {
-            //mView!!.showPasswordError(App.instance.getString(R.string.edit_is_empty))
+            mView.showLoginError("Edit is empty"); //App.instance.getString(R.string.edit_is_empty)
             result = true;
         }
         return result;
@@ -48,6 +50,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     public void onBtnResetClick(String loginText) {
         if (loginText.equals("")) {
             //mView.showLoginError(App.instance.getString(R.string.edit_is_empty))
+            mView.showLoginError("Edit is empty"); //App.instance.getString(R.string.edit_is_empty)
             return;
         }
         mView.showLoadProgress();
@@ -76,38 +79,38 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void onResetFinished() {
-        /*mView!!.showToast(
-                App.instance.getString(R.string.restore_email_sent),
-                ToastMode.INFO
-        )*/
+        mView.showToast(
+                "Restore email sent",//App.instance.getString(R.string.restore_email_sent),
+                LoginActivity.ToastMode.INFO
+        );
         mView.enterLoginMode();
         mView.hideLoadProgress();
     }
 
     @Override
     public void onResetFailed(String reason) {
-        /*mView.showToast(
-                Utils.getErrorMessage(reason),
-                ToastMode.ERROR
-        )*/
+        mView.showToast(
+                reason,
+                LoginActivity.ToastMode.ERROR
+        );
         mView.hideLoadProgress();
     }
 
     @Override
     public void onRegistrationFailed(String reason) {
-        /*mView!!.showToast(
-                Utils.getErrorMessage(reason),
-                ToastMode.ERROR
-        )*/
+        mView.showToast(
+                reason,
+                LoginActivity.ToastMode.ERROR
+        );
         mView.hideLoadProgress();
     }
 
     @Override
     public void onLoginFailed(String reason) {
-        /*mView.showToast(
-                Utils.getErrorMessage(reason),
-                ToastMode.ERROR
-        )*/
+        mView.showToast(
+                reason,
+                LoginActivity.ToastMode.ERROR
+        );
         mView.hideLoadProgress();
     }
 }

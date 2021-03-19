@@ -71,6 +71,7 @@ public class LoginRepository implements LoginContract.Repository {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "signInWithEmail:success");
                     FirebaseUser user = mAuth.getCurrentUser();
+                    mPresenter.onLoginFinished();
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.getException());
                     try {

@@ -1,4 +1,4 @@
-package com.smri.smarttracker.fragments.profile;
+package com.smri.smarttracker.activities.main.fragments.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.smri.smarttracker.R;
 import com.smri.smarttracker.activities.login.LoginActivity;
+import com.smri.smarttracker.activities.splash.SplashActivity;
 import com.smri.smarttracker.utils.FabFragmentListener;
 
 public class ProfileFragment extends Fragment {
@@ -25,7 +27,7 @@ public class ProfileFragment extends Fragment {
         signBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+                exitFirebase();
             }
         }
         );
@@ -41,4 +43,11 @@ public class ProfileFragment extends Fragment {
         Intent intent = new Intent(getContext(), LoginActivity.class);
         getContext().startActivity(intent);
     }
+
+    public void exitFirebase(){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent= new Intent(getContext(), SplashActivity.class);
+        getContext().startActivity(intent);
+    }
+
 }

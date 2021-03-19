@@ -1,4 +1,4 @@
-package com.smri.smarttracker.fragments.database.adapter;
+package com.smri.smarttracker.activities.main.fragments.database.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.smri.smarttracker.R;
-import com.smri.smarttracker.activities.ChemEditor;
+import com.smri.smarttracker.activities.editor.ChemEditor;
 import com.smri.smarttracker.utils.Chemical;
 
 import java.util.List;

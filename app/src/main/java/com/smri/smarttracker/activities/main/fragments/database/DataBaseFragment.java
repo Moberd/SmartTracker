@@ -1,4 +1,4 @@
-package com.smri.smarttracker.fragments.database;
+package com.smri.smarttracker.activities.main.fragments.database;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,27 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.smri.smarttracker.R;
-import com.smri.smarttracker.activities.ChemEditor;
-import com.smri.smarttracker.fragments.database.adapter.ChemicalsAdapter;
+import com.smri.smarttracker.activities.editor.ChemEditor;
+import com.smri.smarttracker.activities.main.fragments.database.adapter.ChemicalsAdapter;
 import com.smri.smarttracker.utils.Chemical;
 import com.smri.smarttracker.utils.FabFragmentListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class DataBaseFragment extends Fragment {
 

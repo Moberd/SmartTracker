@@ -8,7 +8,7 @@ public interface LoginContract {
         void showLoadProgress();
         void hideLoadProgress();
         void enterLoginMode();
-        //void showToast(String message, LoginActivity.Companion.ToastMode mode);
+        void showToast(String message, LoginActivity.ToastMode mode);
     }
 
     interface Presenter {

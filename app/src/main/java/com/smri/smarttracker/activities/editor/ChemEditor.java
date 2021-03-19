@@ -1,4 +1,4 @@
-package com.smri.smarttracker.activities;
+package com.smri.smarttracker.activities.editor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
