@@ -7,7 +7,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     private LoginPresenter mPresenter;
     LayoutMode currentMode = LayoutMode.LOGIN;
-    ImageButton btnBack;
     Button btnLogin;
     TextView btnCreateAccount;
     TextView btnForgot;
@@ -39,7 +37,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reg_layout);
         mPresenter = new LoginPresenter(this);
-        btnBack = findViewById(R.id.btnBack);
         btnLogin = findViewById(R.id.btnLogin);
         etLogin = findViewById(R.id.etLogin);
         etPassword = findViewById(R.id.etPassword);
@@ -64,12 +61,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     void setUpListeners(){
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,7 +154,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         pbLoading.setVisibility(View.VISIBLE);
         btnLogin.setText("");
         btnLogin.setEnabled(false);
-        btnBack.setEnabled(false);
     }
 
     @Override
@@ -186,12 +176,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         }
         btnLogin.setText(newText);
         btnLogin.setEnabled(true);
-        btnBack.setEnabled(true);
     }
 
     @Override
     public void enterLoginMode() {
-        btnBack.setVisibility(View.GONE);
         btnLogin.setText("Login");// = resources.getString(R.string.log_in)
         btnCreateAccount.setVisibility(View.VISIBLE);
         btnForgot.setVisibility(View.VISIBLE);
@@ -200,7 +188,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     private void enterRegistrationMode() {
-        btnBack.setVisibility(View.VISIBLE);
         btnLogin.setText("create new account");// = resources.getString(R.string.create_new_account)
         btnCreateAccount.setVisibility(View.GONE);
         btnForgot.setVisibility(View.GONE);
@@ -209,7 +196,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     private void enterRestoringMode() {
-        btnBack.setVisibility(View.VISIBLE);
         btnLogin.setText("Restore");// = resources.getString(R.string.restore)
         btnCreateAccount.setVisibility(View.GONE);
         btnForgot.setVisibility(View.GONE);
