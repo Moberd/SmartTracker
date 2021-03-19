@@ -1,18 +1,16 @@
-package com.smri.smarttracker.activities.splash;
+package com.smri.smarttracker.screens.splash;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
 
 import com.smri.smarttracker.R;
-import com.smri.smarttracker.activities.main.MainActivity;
-import com.smri.smarttracker.activities.login.LoginActivity;
+import com.smri.smarttracker.screens.main.MainActivity;
+import com.smri.smarttracker.screens.login.LoginActivity;
 
 
 public class SplashActivity extends Activity implements SplashContract.View {
-    Handler handler;
     SplashContract.Presenter mPresenter = new SplashPresenter();
     @Override
     protected void onCreate(Bundle savedInstanceState) {

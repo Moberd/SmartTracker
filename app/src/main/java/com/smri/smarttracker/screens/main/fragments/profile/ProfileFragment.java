@@ -1,4 +1,4 @@
-package com.smri.smarttracker.activities.main.fragments.profile;
+package com.smri.smarttracker.screens.main.fragments.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.smri.smarttracker.R;
-import com.smri.smarttracker.activities.login.LoginActivity;
-import com.smri.smarttracker.activities.splash.SplashActivity;
+import com.smri.smarttracker.screens.login.LoginActivity;
+import com.smri.smarttracker.screens.splash.SplashActivity;
 import com.smri.smarttracker.utils.FabFragmentListener;
 
 public class ProfileFragment extends Fragment {

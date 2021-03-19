@@ -1,4 +1,4 @@
-package com.smri.smarttracker.activities.splash;
+package com.smri.smarttracker.screens.splash;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

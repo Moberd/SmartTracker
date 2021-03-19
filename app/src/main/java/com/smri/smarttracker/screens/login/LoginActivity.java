@@ -1,4 +1,4 @@
-package com.smri.smarttracker.activities.login;
+package com.smri.smarttracker.screens.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.smri.smarttracker.R;
-import com.smri.smarttracker.activities.main.MainActivity;
+import com.smri.smarttracker.screens.main.MainActivity;
 
 import es.dmoral.toasty.Toasty;
 

@@ -1,4 +1,4 @@
-package com.smri.smarttracker.activities.main.fragments.database;
+package com.smri.smarttracker.screens.main.fragments.database;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.smri.smarttracker.R;
-import com.smri.smarttracker.activities.editor.ChemEditor;
-import com.smri.smarttracker.activities.main.fragments.database.adapter.ChemicalsAdapter;
+import com.smri.smarttracker.screens.editor.ChemEditor;
+import com.smri.smarttracker.screens.main.fragments.database.adapter.ChemicalsAdapter;
 import com.smri.smarttracker.utils.Chemical;
 import com.smri.smarttracker.utils.FabFragmentListener;
 

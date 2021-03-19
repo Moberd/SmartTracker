@@ -1,4 +1,4 @@
-package com.smri.smarttracker.activities.splash;
+package com.smri.smarttracker.screens.splash;
 
 public interface SplashContract {
     interface View{

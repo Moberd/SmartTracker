@@ -1,4 +1,4 @@
-package com.smri.smarttracker.activities.main;
+package com.smri.smarttracker.screens.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,15 +11,17 @@ import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.smri.smarttracker.R;
-import com.smri.smarttracker.activities.main.fragments.database.DataBaseFragment;
-import com.smri.smarttracker.activities.main.fragments.profile.ProfileFragment;
+import com.smri.smarttracker.screens.main.fragments.database.DataBaseFragment;
+import com.smri.smarttracker.screens.main.fragments.profile.ProfileFragment;
 import com.smri.smarttracker.utils.FabFragmentListener;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, FabFragmentListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, FabFragmentListener,MainContract.View {
 
 
     FloatingActionButton fab;
+    BottomNavigationView navigation;
     Fragment currFragment = new DataBaseFragment();
+    MainContract.Presenter mPresenter = new MainPresenter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,20 +29,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadFragment(currFragment);
-
-        BottomNavigationView navigation = findViewById(R.id.bottom_nav);
-        navigation.setOnNavigationItemSelectedListener(this);
-
+        mPresenter.attachView(this);
+        navigation = findViewById(R.id.bottom_nav);
         fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(currFragment instanceof DataBaseFragment) {
-                    ((DataBaseFragment) currFragment).addNewChemical();
-                } else if(currFragment instanceof ProfileFragment) {
-                    ((ProfileFragment) currFragment).editProfile();
-                }
-            }
-        });
+        setUpListeners();
     }
 
     private boolean loadFragment(Fragment fragment) {
@@ -73,5 +65,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public FloatingActionButton getFab() {
         return fab;
+    }
+
+    void setUpListeners(){
+        navigation.setOnNavigationItemSelectedListener(this);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(currFragment instanceof DataBaseFragment) {
+                    ((DataBaseFragment) currFragment).addNewChemical();
+                } else if(currFragment instanceof ProfileFragment) {
+                    ((ProfileFragment) currFragment).editProfile();
+                }
+            }
+        });
     }
 }
