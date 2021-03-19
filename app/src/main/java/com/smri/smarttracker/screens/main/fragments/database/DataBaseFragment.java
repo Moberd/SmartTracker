@@ -73,7 +73,6 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
 
     @Override
     public void updateList(ArrayList<Chemical> items) {
-
         adapter.updateItems(items);
         recyclerView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
