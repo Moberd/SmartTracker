@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 import com.smri.smarttracker.R;
 
-public class ChemEditor extends AppCompatActivity {
+public class ChemEditorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

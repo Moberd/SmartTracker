@@ -3,6 +3,7 @@ package com.smri.smarttracker.screens.main.fragments.database;
 import com.smri.smarttracker.utils.Chemical;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DataBasePresenter implements DataBaseContract.Presenter {
 
@@ -24,7 +25,7 @@ public class DataBasePresenter implements DataBaseContract.Presenter {
     }
 
     @Override
-    public void onDataLoaded(ArrayList<Chemical> items) {
+    public void onDataLoaded(List<Chemical> items) {
         if(viewIsAttached){
             mView.updateList(items);
         }

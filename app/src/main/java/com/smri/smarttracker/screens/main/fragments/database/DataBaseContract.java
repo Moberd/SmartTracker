@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface DataBaseContract {
     interface View {
-        void updateList(ArrayList<Chemical> items);
+        void updateList(List<Chemical> items);
         void addNewChemical();
     }
 
     interface Presenter {
         void attachView(DataBaseContract.View view);
         void detachView();
-        void onDataLoaded(ArrayList<Chemical> items);
+        void onDataLoaded(List<Chemical> items);
         void loadData();
     }
 

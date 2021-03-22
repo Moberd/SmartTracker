@@ -5,9 +5,9 @@ public class Chemical {
     public String name;
     public String creator;
     public String description;
-    public int id;
+    public String id;
 
-    public Chemical(String name, String creator, String description, int id){
+    public Chemical(String name, String creator, String description, String id){
         this.name = name;
         this.creator = creator;
         this.description = description;
@@ -18,16 +18,23 @@ public class Chemical {
         this.name = name;
         this.description = description;
         creator = "";
-        id = 0;
+        id = "-";
+    }
+
+    public Chemical(String id, String name, String description){
+        this.name = name;
+        this.description = description;
+        creator = "";
+        this.id = id;
     }
 
     public Chemical(){}
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

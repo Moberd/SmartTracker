@@ -12,12 +12,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.smri.smarttracker.R;
-import com.smri.smarttracker.screens.editor.ChemEditor;
+import com.smri.smarttracker.screens.editor.ChemEditorActivity;
 import com.smri.smarttracker.screens.main.fragments.database.adapter.ChemicalsAdapter;
 import com.smri.smarttracker.utils.Chemical;
 import com.smri.smarttracker.utils.FabFragmentListener;
@@ -67,12 +66,12 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
 
     public void addNewChemical(){
         Toast.makeText(getContext(), "DATABASE CLICKED", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getContext(), ChemEditor.class);
+        Intent intent = new Intent(getContext(), ChemEditorActivity.class);
         getContext().startActivity(intent);
     }
 
     @Override
-    public void updateList(ArrayList<Chemical> items) {
+    public void updateList(List<Chemical> items) {
         adapter.updateItems(items);
         recyclerView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
