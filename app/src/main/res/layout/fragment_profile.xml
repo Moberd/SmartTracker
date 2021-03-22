@@ -8,21 +8,22 @@
 
     <soup.neumorphism.NeumorphButton
         android:id="@+id/neumorphButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="111dp"
+        android:layout_height="66dp"
         android:layout_marginEnd="27dp"
         android:text="Neo"
+        android:textSize="@dimen/_18sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499"
+        app:neumorph_backgroundColor="@color/colorBackground"
         app:neumorph_shadowColorDark="@color/colorPrimary"
         app:neumorph_shadowColorLight="@color/colorPrimaryDark"
         app:neumorph_shadowElevation="6dp"
-        app:neumorph_shapeType="basin"
         app:neumorph_shapeAppearance="@style/ShapeAppearance"
-        app:neumorph_backgroundColor="@color/colorBackground"
+        app:neumorph_shapeType="basin"
         app:neumorph_strokeColor="@color/colorPrimaryDark"
         app:neumorph_strokeWidth="@dimen/_12sdp">
 
