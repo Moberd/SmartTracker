@@ -12,7 +12,6 @@ public interface SplashContract {
     }
 
     interface Repository{
-
         void attachPresenter(Presenter presenter);
         boolean checkAuthorizationStatus();
     }

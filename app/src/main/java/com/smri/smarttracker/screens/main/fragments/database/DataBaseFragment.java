@@ -2,6 +2,7 @@ package com.smri.smarttracker.screens.main.fragments.database;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,16 +31,21 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
     private ChemicalsAdapter adapter;
     private ProgressBar progressBar;
     public FabFragmentListener listener;
-    final DataBaseContract.Presenter mPresenter = new DataBasePresenter();
+    DataBaseContract.Presenter mPresenter;
+
+    SharedPreferences mSP;
+    public static final String APP_PREFERENCES = "mysettings";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mSP = getContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        mPresenter = new DataBasePresenter(mSP);
     }
-
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_database, container, false);
+
         progressBar = view.findViewById(R.id.progressTasks);
         recyclerView = view.findViewById(R.id.database_chem);
         recyclerView.setHasFixedSize(true);
@@ -48,6 +54,7 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
         adapter = new ChemicalsAdapter(list,getActivity());
         recyclerView.setAdapter(adapter);
 
+        mPresenter.attachView(this);
         mPresenter.loadData();
         return view;
     }
@@ -55,7 +62,6 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        mPresenter.attachView(this);
     }
 
     @Override
@@ -65,8 +71,10 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
     }
 
     public void addNewChemical(){
-        Toast.makeText(getContext(), "DATABASE CLICKED", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getContext(), ChemEditorActivity.class);
+        intent.putExtra("CHEM_ID","new");
+        intent.putExtra("name","new");
+        intent.putExtra("description","new");
         getContext().startActivity(intent);
     }
 

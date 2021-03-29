@@ -14,6 +14,7 @@ import com.smri.smarttracker.R;
 import com.smri.smarttracker.screens.editor.ChemEditorActivity;
 import com.smri.smarttracker.utils.Chemical;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.ViewHolder> {
@@ -48,8 +49,10 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "Recycle Click" + position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, ChemEditorActivity.class);
+                intent.putExtra("CHEM_ID",listItems.get(position).getId());
+                intent.putExtra("name",listItems.get(position).getName());
+                intent.putExtra("description",listItems.get(position).getDescription());
                 mContext.startActivity(intent);
             }
         });
