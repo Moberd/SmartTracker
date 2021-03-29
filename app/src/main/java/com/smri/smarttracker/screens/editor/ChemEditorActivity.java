@@ -22,6 +22,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     EditText nameET;
     EditText descET;
     Button saveBtn;
+    Button deleteBtn;
     ChemEditorPresenter mPresenter;
     String id = " ";
     SharedPreferences mSP;
@@ -40,6 +41,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         }
 
         backBtn = findViewById(R.id.backBtn);
+        deleteBtn = findViewById(R.id.deleteBtn);
         saveBtn = findViewById(R.id.saveBtn);
         nameET = findViewById(R.id.editName);
         descET = findViewById(R.id.editDescription);
@@ -61,6 +63,12 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
                 String name = nameET.getText().toString();
                 String desc = descET.getText().toString();
                 mPresenter.getChanges(id,name,desc);
+            }
+        });
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.deleteChemical(id);
             }
         });
     }

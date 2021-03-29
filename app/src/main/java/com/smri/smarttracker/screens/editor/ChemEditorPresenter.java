@@ -29,11 +29,11 @@ public class ChemEditorPresenter implements ChemEditorContract.Presenter{
 
     boolean checkEmptiness(String name,String description){
         boolean result = false;
-        if (name.equals("")) {
+        if (name.trim().equals("")) {
             //mView.showLoginError("Edit is empty"); //App.instance.getString(R.string.edit_is_empty)
             result = true;
         }
-        if (description.equals("")) {
+        if (description.trim().equals("")) {
             //mView.showLoginError("Edit is empty"); //App.instance.getString(R.string.edit_is_empty)
             result = true;
         }
@@ -44,6 +44,14 @@ public class ChemEditorPresenter implements ChemEditorContract.Presenter{
         if(!checkEmptiness(name,description))
             mRepository.sentChangesToDB(id, name, description);
     }
+
+    @Override
+    public void deleteChemical(String id) {
+        if(!(id.equals("new") || id.trim().equals(""))){
+            mRepository.deleteFromDB(id);
+        }
+    }
+
     public void changesComplete(){
         mView.closeActivity();
     }

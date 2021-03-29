@@ -43,4 +43,13 @@ public class ChemEditorRepository implements ChemEditorContract.Repository {
         }
         mPresenter.changesComplete();
     }
+
+    @Override
+    public void deleteFromDB(String id) {
+        String laboratory = mSP.getString(APP_PREFERENCES_LABORATORY,"");
+        db.collection("databases").document(laboratory).collection("chemicals").document(id).delete();
+        mPresenter.changesComplete();
+    }
+
+
 }
