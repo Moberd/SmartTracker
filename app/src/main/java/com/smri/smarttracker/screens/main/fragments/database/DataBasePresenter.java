@@ -1,5 +1,7 @@
 package com.smri.smarttracker.screens.main.fragments.database;
 
+import android.content.SharedPreferences;
+
 import com.smri.smarttracker.utils.Chemical;
 
 import java.util.ArrayList;
@@ -9,7 +11,13 @@ public class DataBasePresenter implements DataBaseContract.Presenter {
 
     private boolean viewIsAttached = false;
     DataBaseContract.View mView = null;
-    private final DataBaseRepository mRepository = new DataBaseRepository();
+    SharedPreferences mSP;
+    private DataBaseRepository mRepository;
+
+    public DataBasePresenter(SharedPreferences sp){
+        mSP = sp;
+        mRepository = new DataBaseRepository(mSP);
+    }
 
     @Override
     public void attachView(DataBaseContract.View view) {

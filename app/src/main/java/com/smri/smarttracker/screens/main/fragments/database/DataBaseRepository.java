@@ -1,5 +1,9 @@
 package com.smri.smarttracker.screens.main.fragments.database;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -24,6 +28,13 @@ public class DataBaseRepository implements DataBaseContract.Repository {
 
     DataBaseContract.Presenter mPresenter;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    SharedPreferences mSP;
+    public static final String APP_PREFERENCES_LABORATORY = "laboratory";
+
+    public DataBaseRepository(SharedPreferences sp){
+        mSP = sp;
+    }
+
     @Override
     public void attachPresenter(DataBaseContract.Presenter presenter) {
         mPresenter = presenter;
@@ -34,15 +45,18 @@ public class DataBaseRepository implements DataBaseContract.Repository {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final DocumentReference userDoc = db.collection("users").document("testId"); //TODO!!!!
         final String[] laboratory = new String[1];
+        final SharedPreferences.Editor editor = mSP.edit();
         userDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
                     if(task.getResult() != null){
                         laboratory[0] = task.getResult().getString("laboratory");
+                        editor.putString(APP_PREFERENCES_LABORATORY,laboratory[0]);
+                        editor.apply();
+                        loadListFromLab(laboratory[0]);
                     }
                 }
-                loadListFromLab(laboratory[0]);
             }
         });
     }
