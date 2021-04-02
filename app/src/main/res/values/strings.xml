@@ -10,4 +10,5 @@
     <string name="profile_layout">Personal details</string>
     <string name="last_name">Last name</string>
     <string name="first_name">First name</string>
+    <string name="laboratory_number">Laboratory number</string>
 </resources>

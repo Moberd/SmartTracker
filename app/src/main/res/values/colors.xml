@@ -7,6 +7,7 @@
     <color name="colorNavText">#C0E1EC</color>
     <color name="colorNavBackground">#2A6F97</color>
     <color name="colorBackground">#FDFEFE</color>
+    <color name="colorBackgroundDark">#D0E9F1</color>
     <color name="colorFloatBtn">#D1EAF0</color>
     <color name="colorDisabled">#245E7F</color>>
     <color name="colorEnabled">#C0E1EC</color>>

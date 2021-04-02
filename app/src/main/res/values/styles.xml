@@ -36,7 +36,7 @@
     </style>
 
     <style name="ShapeAppearance">
-        <item name="neumorph_cornerFamily">oval</item>
+        <item name="neumorph_cornerFamily">rounded</item>
         <item name="neumorph_cornerSize">32dp</item>
     </style>
 

@@ -3,6 +3,7 @@ package com.smri.smarttracker.screens.main.fragments.profile;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,6 +18,8 @@ import com.smri.smarttracker.R;
 import com.smri.smarttracker.screens.login.LoginActivity;
 import com.smri.smarttracker.screens.splash.SplashActivity;
 import com.smri.smarttracker.utils.FabFragmentListener;
+
+import soup.neumorphism.ShapeType;
 
 public class ProfileFragment extends Fragment {
 
@@ -51,4 +54,12 @@ public class ProfileFragment extends Fragment {
         getContext().startActivity(intent);
     }
 
+    /*@Override
+    public boolean onTouchEvent(MotionEvent event){
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN : setShapeType(ShapeType.PRESSED);
+            case MotionEvent.ACTION_UP : setShapeType(ShapeType.FLAT);
+        }
+        return super.on(event);
+    }*/
 }
