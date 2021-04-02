@@ -5,13 +5,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,11 +46,11 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
         super.onCreate(savedInstanceState);
         mSP = getContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         mPresenter = new DataBasePresenter(mSP);
+        setHasOptionsMenu(true);
     }
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_database, container, false);
-
         progressBar = view.findViewById(R.id.progressTasks);
         recyclerView = view.findViewById(R.id.database_chem);
         recyclerView.setHasFixedSize(true);
@@ -57,6 +62,36 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
         mPresenter.attachView(this);
         mPresenter.loadData();
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.search_menu, menu);
+        MenuItem search = menu.findItem(R.id.app_bar_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+        search(searchView);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void search(SearchView searchView) {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return true;
+            }
+        });
     }
 
     @Override
@@ -79,7 +114,7 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
     }
 
     @Override
-    public void updateList(List<Chemical> items) {
+    public void updateList(ArrayList<Chemical> items) {
         adapter.updateItems(items);
         recyclerView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);

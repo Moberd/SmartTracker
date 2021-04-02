@@ -33,7 +33,7 @@ public class DataBasePresenter implements DataBaseContract.Presenter {
     }
 
     @Override
-    public void onDataLoaded(List<Chemical> items) {
+    public void onDataLoaded(ArrayList<Chemical> items) {
         if(viewIsAttached){
             mView.updateList(items);
         }

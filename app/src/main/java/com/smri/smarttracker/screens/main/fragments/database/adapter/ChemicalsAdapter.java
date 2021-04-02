@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,13 +19,15 @@ import com.smri.smarttracker.utils.Chemical;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.ViewHolder> {
+public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.ViewHolder> implements Filterable {
 
-    private List<Chemical> listItems;
-    private Context mContext;
+    private ArrayList<Chemical> listItems = new ArrayList<>();
+    private ArrayList<Chemical> filteredList = new ArrayList<>();
+    private final Context mContext;
 
-    public ChemicalsAdapter(List<Chemical> listItems, Context mContext) {
+    public ChemicalsAdapter(ArrayList<Chemical> listItems, Context mContext) {
         this.listItems = listItems;
+        this.filteredList = listItems;
         this.mContext = mContext;
     }
 
@@ -60,7 +64,36 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
 
     @Override
     public int getItemCount() {
-        return listItems.size();
+        return filteredList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    filteredList = listItems;
+                } else {
+                    ArrayList<Chemical> _filteredList = new ArrayList<>();
+                    for (Chemical chem : listItems) {
+                        if (chem.getName().toLowerCase().contains(charString)) {
+                            _filteredList.add(chem);
+                        }
+                    }
+                    filteredList = _filteredList;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredList;
+                return filterResults;
+            }
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filteredList = (ArrayList<Chemical>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -74,8 +107,9 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
         }
     }
 
-    public void updateItems(List<Chemical> items){
+    public void updateItems(ArrayList<Chemical> items){
         listItems = items;
+        filteredList = items;
         notifyDataSetChanged();
     }
 

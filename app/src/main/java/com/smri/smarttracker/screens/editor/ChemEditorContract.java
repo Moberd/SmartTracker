@@ -4,6 +4,7 @@ package com.smri.smarttracker.screens.editor;
 public interface ChemEditorContract {
     interface View{
         void closeActivity();
+        void showToast(String message,ToastMode mode);
     }
     interface Presenter{
         void attachView(View view);

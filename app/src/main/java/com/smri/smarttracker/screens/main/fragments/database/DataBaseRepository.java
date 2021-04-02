@@ -69,7 +69,7 @@ public class DataBaseRepository implements DataBaseContract.Repository {
                 if(task.isSuccessful()){
                     if(task.getResult() != null){
                         QuerySnapshot allChems = task.getResult();
-                        List<Chemical> listChems = new ArrayList<>();
+                        ArrayList<Chemical> listChems = new ArrayList<>();
                         for(DocumentSnapshot doc : allChems.getDocuments()){
                             String id = doc.getId();
                             String name = doc.getString("name");

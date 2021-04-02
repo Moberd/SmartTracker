@@ -30,25 +30,29 @@ public class ChemEditorPresenter implements ChemEditorContract.Presenter{
     boolean checkEmptiness(String name,String description){
         boolean result = false;
         if (name.trim().equals("")) {
-            //mView.showLoginError("Edit is empty"); //App.instance.getString(R.string.edit_is_empty)
+            mView.showToast("Name is empty",ToastMode.ERROR);
             result = true;
-        }
-        if (description.trim().equals("")) {
-            //mView.showLoginError("Edit is empty"); //App.instance.getString(R.string.edit_is_empty)
+        } else if (description.trim().equals("")) {
+            mView.showToast("Description is empty",ToastMode.ERROR);
             result = true;
         }
         return result;
     }
 
     public void getChanges(String id,String name,String description){
-        if(!checkEmptiness(name,description))
+        if(!checkEmptiness(name,description)) {
             mRepository.sentChangesToDB(id, name, description);
+            mView.showToast("Successful",ToastMode.SUCCESS);
+        } else {
+            mView.showToast("Empty fields",ToastMode.ERROR);
+        }
     }
 
     @Override
     public void deleteChemical(String id) {
         if(!(id.equals("new") || id.trim().equals(""))){
             mRepository.deleteFromDB(id);
+            mView.showToast("Deleted successful",ToastMode.SUCCESS);
         }
     }
 
