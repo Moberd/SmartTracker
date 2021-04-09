@@ -45,8 +45,7 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        final Chemical itemList = listItems.get(position);
-        String _name = itemList.getName();
+        final Chemical itemList = filteredList.get(position);
         holder.name.setText(itemList.getName());
         holder.description.setText(itemList.getDescription());
 
@@ -76,9 +75,10 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
                 if (charString.isEmpty()) {
                     filteredList = listItems;
                 } else {
+                    charString = charSequence.toString().toLowerCase();
                     ArrayList<Chemical> _filteredList = new ArrayList<>();
                     for (Chemical chem : listItems) {
-                        if (chem.getName().toLowerCase().contains(charString)) {
+                        if (chem.getName().toLowerCase().contains(charString) || chem.getDescription().toLowerCase().contains(charString)) {
                             _filteredList.add(chem);
                         }
                     }
@@ -102,8 +102,8 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.name);
-            description = (TextView) itemView.findViewById(R.id.description);
+            name = itemView.findViewById(R.id.name);
+            description = itemView.findViewById(R.id.description);
         }
     }
 
