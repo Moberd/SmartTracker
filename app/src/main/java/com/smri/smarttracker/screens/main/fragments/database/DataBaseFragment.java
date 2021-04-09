@@ -107,9 +107,9 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
 
     public void addNewChemical(){
         Intent intent = new Intent(getContext(), ChemEditorActivity.class);
-        intent.putExtra("CHEM_ID","new");
-        intent.putExtra("name","new");
-        intent.putExtra("description","new");
+        intent.putExtra("CHEM_ID","NEWRECORD");
+        intent.putExtra("name","NEWRECORD");
+        intent.putExtra("description","NEWRECORD");
         getContext().startActivity(intent);
     }
 

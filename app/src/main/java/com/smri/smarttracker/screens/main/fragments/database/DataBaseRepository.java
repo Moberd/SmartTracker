@@ -43,18 +43,17 @@ public class DataBaseRepository implements DataBaseContract.Repository {
     @Override
     public void loadChemicalsDB() {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        final DocumentReference userDoc = db.collection("users").document("testId"); //TODO!!!!
-        final String[] laboratory = new String[1];
+        final DocumentReference userDoc = db.collection("users").document("testId"); //TODO!!!
         final SharedPreferences.Editor editor = mSP.edit();
         userDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
                     if(task.getResult() != null){
-                        laboratory[0] = task.getResult().getString("laboratory");
-                        editor.putString(APP_PREFERENCES_LABORATORY,laboratory[0]);
+                        String laboratory = task.getResult().getString("laboratory");
+                        editor.putString(APP_PREFERENCES_LABORATORY,laboratory);
                         editor.apply();
-                        loadListFromLab(laboratory[0]);
+                        loadListFromLab(laboratory);
                     }
                 }
             }
