@@ -33,6 +33,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     SharedPreferences mSP;
     AlertDialog dialogAlert;
     public static final String APP_PREFERENCES = "mysettings";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     }
 
     void hideDeleteBtn(){
-        if(getIntent().getStringExtra("name").equals("new")){
+        if(getIntent().getStringExtra("name").equals("NEWRECORD")){
             deleteBtn.setVisibility(View.GONE);
         }
     }
@@ -87,10 +88,10 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         });
     }
     void writeInfo(){
-        if(!getIntent().getStringExtra("name").equals("new")) {
+        if(!getIntent().getStringExtra("name").equals("NEWRECORD")) {
             nameET.setText(getIntent().getStringExtra("name"));
         }
-        if(!getIntent().getStringExtra("description").equals("new")) {
+        if(!getIntent().getStringExtra("description").equals("NEWRECORD")) {
             descET.setText(getIntent().getStringExtra("description"));
         }
     }

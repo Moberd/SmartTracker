@@ -45,18 +45,16 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        final Chemical itemList = listItems.get(position);
-        String _name = itemList.getName();
+        final Chemical itemList = filteredList.get(position);
         holder.name.setText(itemList.getName());
         holder.description.setText(itemList.getDescription());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, ChemEditorActivity.class);
-                intent.putExtra("CHEM_ID",listItems.get(position).getId());
-                intent.putExtra("name",listItems.get(position).getName());
-                intent.putExtra("description",listItems.get(position).getDescription());
+                intent.putExtra("CHEM_ID",filteredList.get(position).getId());
+                intent.putExtra("name",filteredList.get(position).getName());
+                intent.putExtra("description",filteredList.get(position).getDescription());
                 mContext.startActivity(intent);
             }
         });
@@ -76,9 +74,10 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
                 if (charString.isEmpty()) {
                     filteredList = listItems;
                 } else {
+                    charString = charSequence.toString().toLowerCase();
                     ArrayList<Chemical> _filteredList = new ArrayList<>();
                     for (Chemical chem : listItems) {
-                        if (chem.getName().toLowerCase().contains(charString)) {
+                        if (chem.getName().toLowerCase().contains(charString) || chem.getDescription().toLowerCase().contains(charString)) {
                             _filteredList.add(chem);
                         }
                     }
@@ -102,8 +101,8 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.name);
-            description = (TextView) itemView.findViewById(R.id.description);
+            name = itemView.findViewById(R.id.name);
+            description = itemView.findViewById(R.id.description);
         }
     }
 

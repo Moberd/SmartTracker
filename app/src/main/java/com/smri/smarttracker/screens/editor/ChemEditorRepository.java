@@ -36,7 +36,7 @@ public class ChemEditorRepository implements ChemEditorContract.Repository {
         data.put("description", description);
         String laboratory = mSP.getString(APP_PREFERENCES_LABORATORY,"");
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        if(!id.equals("new")) {
+        if(!id.equals("NEWRECORD")) {
             db.collection("databases").document(laboratory).collection("chemicals").document(id).set(data, SetOptions.merge());
         } else {
             db.collection("databases").document(laboratory).collection("chemicals").add(data);

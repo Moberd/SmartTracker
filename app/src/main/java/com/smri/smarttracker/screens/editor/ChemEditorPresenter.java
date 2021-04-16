@@ -50,7 +50,7 @@ public class ChemEditorPresenter implements ChemEditorContract.Presenter{
 
     @Override
     public void deleteChemical(String id) {
-        if(!(id.equals("new") || id.trim().equals(""))){
+        if(!(id.equals("NEWRECORD") || id.trim().equals(""))){
             mRepository.deleteFromDB(id);
             mView.showToast("Deleted successful",ToastMode.SUCCESS);
         }
