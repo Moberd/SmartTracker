@@ -19,6 +19,7 @@ import com.smri.smarttracker.screens.login.LoginActivity;
 import com.smri.smarttracker.screens.splash.SplashActivity;
 import com.smri.smarttracker.utils.FabFragmentListener;
 
+import es.dmoral.toasty.Toasty;
 import soup.neumorphism.ShapeType;
 
 public class ProfileFragment extends Fragment {
@@ -33,8 +34,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 exitFirebase();
             }
-        }
-        );
+        });
         return view;
     }
 
@@ -42,24 +42,10 @@ public class ProfileFragment extends Fragment {
         Toast.makeText(getContext(), "PROFILE CLICKED", Toast.LENGTH_SHORT).show();
     }
 
-    public void signIn(){
-        Toast.makeText(getContext(), "REG SCREEN CLICKED", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getContext(), LoginActivity.class);
-        getContext().startActivity(intent);
-    }
-
     public void exitFirebase(){
+        Toasty.success(getContext(),"Sign out").show();
         FirebaseAuth.getInstance().signOut();
         Intent intent= new Intent(getContext(), SplashActivity.class);
         getContext().startActivity(intent);
     }
-
-    /*@Override
-    public boolean onTouchEvent(MotionEvent event){
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN : setShapeType(ShapeType.PRESSED);
-            case MotionEvent.ACTION_UP : setShapeType(ShapeType.FLAT);
-        }
-        return super.on(event);
-    }*/
 }

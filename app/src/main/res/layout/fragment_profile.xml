@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context="com.smri.smarttracker.screens.main.MainActivity">
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/rellay1"
@@ -42,7 +46,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
             android:fontFamily="sans-serif-light"
-            android:text="Тетя Мотя"
+            android:text="User Name"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="32sp" />
 
@@ -54,7 +58,7 @@
             android:layout_below="@+id/user_name"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"
-            android:text="SMRI"
+            android:text="Laboratory"
             android:textAllCaps="true"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp" />
@@ -181,9 +185,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="bottom"
-                android:layout_marginStart="64dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="76dp"
                 android:layout_marginBottom="3dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
@@ -202,9 +204,8 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
 </RelativeLayout>
-
+</androidx.core.widget.NestedScrollView>
 
 
 

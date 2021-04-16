@@ -11,6 +11,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -49,11 +53,11 @@ public class LoginRepository implements LoginContract.Repository {
                     try {
                         throw task.getException();
                     } catch (FirebaseAuthException e) {
-                        mPresenter.onLoginFailed(task.getException().toString());
+                        mPresenter.onLoginFailed(e.getLocalizedMessage());
                     } catch (FirebaseNetworkException e) {
                         mPresenter.onLoginFailed("ERROR_NETWORK");
                     } catch (Exception e) {
-                        mPresenter.onLoginFailed(task.getException().toString());
+                        mPresenter.onLoginFailed(e.getLocalizedMessage());
                     }
                 }
             }
@@ -74,11 +78,11 @@ public class LoginRepository implements LoginContract.Repository {
                     try {
                         throw task.getException();
                     } catch (FirebaseAuthException e) {
-                        mPresenter.onLoginFailed(task.getException().toString());
+                        mPresenter.onLoginFailed(e.getLocalizedMessage());
                     } catch (FirebaseNetworkException e) {
-                        mPresenter.onLoginFailed("ERROR_NETWORK");
+                        mPresenter.onLoginFailed("NETWORK ERROR");
                     } catch (Exception e) {
-                        mPresenter.onLoginFailed(task.getException().toString());
+                        mPresenter.onLoginFailed(e.getLocalizedMessage());
                     }
                 }
             }
@@ -87,11 +91,27 @@ public class LoginRepository implements LoginContract.Repository {
 
     @Override
     public void resetPassword(String email) {
-
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Email sent.");
+                        }
+                    }
+                });
     }
 
     @Override
     public void createUserDocument() {
-
+        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> data = new HashMap<>();
+        data.put("name", "");
+        data.put("email", user.getEmail());
+        data.put("laboratory","");
+        data.put("laboratory_number",0);
+        data.put("phone_number","");
+        db.collection("users").document(mAuth.getUid()).set(data);
     }
 }

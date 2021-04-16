@@ -7,13 +7,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.smri.smarttracker.R;
 import com.smri.smarttracker.screens.main.MainActivity;
 import com.smri.smarttracker.utils.Chemical;
@@ -31,6 +38,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     ChemEditorPresenter mPresenter;
     String id = "";
     SharedPreferences mSP;
+    ImageView barCode;
     AlertDialog dialogAlert;
     public static final String APP_PREFERENCES = "mysettings";
 
@@ -46,17 +54,30 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         if(intent != null) {
             id = getIntent().getStringExtra("CHEM_ID");
         }
-
         backBtn = findViewById(R.id.backBtn);
         deleteBtn = findViewById(R.id.deleteBtn);
         saveBtn = findViewById(R.id.saveBtn);
         nameET = findViewById(R.id.editName);
         descET = findViewById(R.id.editDescription);
+        barCode = findViewById(R.id.elem_code);
         mPresenter.attachView(this);
         dialogAlert = createDialog();
+        if(!id.equals("NEWRECORD")) setUpBarcode();
         setUpListeners();
         hideDeleteBtn();
         writeInfo();
+    }
+
+    private void setUpBarcode() {
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        try {
+            BitMatrix bitMatrix = multiFormatWriter.encode(id, BarcodeFormat.CODE_128,600,400);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+            barCode.setImageBitmap(bitmap);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
     }
 
     void hideDeleteBtn(){
