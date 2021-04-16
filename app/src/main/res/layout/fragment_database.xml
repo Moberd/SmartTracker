@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:id="@+id/database_chem"
         android:visibility="gone"
-        tools:listitem="@layout/chemical_cardview"/>
+        tools:listitem="@layout/chemical_cardview"
+        />
 
     <ProgressBar
         android:id="@+id/progressTasks"

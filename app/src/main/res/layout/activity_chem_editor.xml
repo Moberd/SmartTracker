@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".screens.editor.ChemEditorActivity"
     android:orientation="vertical">
-
 
     <ImageButton
         android:id="@+id/backBtn"
@@ -18,42 +17,162 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editName"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|center_vertical"
-        android:hint="Chemicals editor" />
 
-    <EditText
-        android:layout_gravity="center|center_vertical"
-        android:layout_marginTop="20dp"
-        android:id="@+id/editDescription"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="Descripiton"/>
+    <RelativeLayout
+        android:id="@+id/rellay1"
+        android:layout_width="match_parent"
+        android:layout_height="222dp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginBottom="66dp"
+        android:paddingBottom="40dp">
+
+        <RelativeLayout
+            android:id="@+id/imgUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorBackground">
+
+            <ImageView
+                android:layout_width="136dp"
+                android:layout_height="118dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="9dp"
+                android:adjustViewBounds="true"
+                android:background="@color/colorBackgroundDark"
+                android:padding="3dp"
+                android:scaleType="centerInside"
+                android:src="" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/laboratory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgUser"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="0dp"
+            android:fontFamily="sans-serif"
+            android:text="1239991230"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
 
     <LinearLayout
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="362dp"
+        android:layout_height="357dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="74dp"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/saveBtn"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_gravity="left"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="Save"/>
 
-        <Button
-            android:id="@+id/deleteBtn"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_gravity="right"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="Delete"/>
+        <LinearLayout
+            android:id="@+id/info_item_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="Item"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:hint="Chemicals editor" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorBackgroundDark" />
+
+            <TextView
+                android:layout_width="98dp"
+                android:layout_height="wrap_content"
+                android:text="Descripiton"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/editDescription"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginTop="20dp"
+                android:hint="Descripiton" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorBackgroundDark" />
+
+            <TextView
+                android:layout_width="93dp"
+                android:layout_height="wrap_content"
+                android:text="Lab number"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/editLabNumber"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginTop="20dp"
+                android:hint="Descripiton" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorBackgroundDark" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/saveBtn"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:text="Save" />
+
+            <Button
+                android:id="@+id/deleteBtn"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:text="Delete" />
+        </LinearLayout>
+
     </LinearLayout>
 
-</LinearLayout>
+
+</RelativeLayout>
