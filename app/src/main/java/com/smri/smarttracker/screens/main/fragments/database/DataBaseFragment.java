@@ -1,8 +1,11 @@
 package com.smri.smarttracker.screens.main.fragments.database;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.smri.smarttracker.R;
 import com.smri.smarttracker.screens.editor.ChemEditorActivity;
 import com.smri.smarttracker.screens.main.fragments.database.adapter.ChemicalsAdapter;
+import com.smri.smarttracker.screens.main.scanner.ScannerActivity;
 import com.smri.smarttracker.utils.Chemical;
 import com.smri.smarttracker.utils.FabFragmentListener;
 
@@ -37,6 +41,7 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
     private ProgressBar progressBar;
     public FabFragmentListener listener;
     DataBaseContract.Presenter mPresenter;
+    AlertDialog dialogAlert;
 
     SharedPreferences mSP;
     public static final String APP_PREFERENCES = "mysettings";
@@ -61,6 +66,7 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
 
         mPresenter.attachView(this);
         mPresenter.loadData();
+        dialogAlert = createDialog(view.getContext());
         return view;
     }
 
@@ -118,6 +124,35 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
         adapter.updateItems(items);
         recyclerView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
+
+    }
+
+    AlertDialog createDialog(Context context){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("NEW ITEM");
+        builder.setMessage("How do you want to add item?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("SCAN CODE",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                callScanner();
+            }
+        });
+        builder.setPositiveButton("ADD NEW CHEM", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                addNewChemical();
+            }
+        });
+        return builder.create();
+    }
+
+    public void addItem(){
+        dialogAlert.show();
+    }
+
+    public void callScanner(){
+        startActivity(new Intent(getContext(), ScannerActivity.class));
 
     }
 }

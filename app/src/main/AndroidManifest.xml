@@ -11,6 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".screens.editor.ChemEditorActivity"></activity>
         <activity android:name=".screens.login.LoginActivity"></activity>
+        <activity android:name=".screens.main.scanner.ScannerActivity"></activity>
+        <activity android:name=".screens.main.scanner.CaptureActivityAnyOrientation"></activity>
         <activity android:name=".screens.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,5 +23,7 @@
         <activity android:name=".screens.main.MainActivity">
         </activity>
     </application>
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 
 </manifest>

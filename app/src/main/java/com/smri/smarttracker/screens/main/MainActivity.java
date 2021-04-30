@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(currFragment instanceof DataBaseFragment) {
-                    ((DataBaseFragment) currFragment).addNewChemical();
+                    ((DataBaseFragment) currFragment).addItem();
                 } else if(currFragment instanceof ProfileFragment) {
                     ((ProfileFragment) currFragment).editProfile();
                 }

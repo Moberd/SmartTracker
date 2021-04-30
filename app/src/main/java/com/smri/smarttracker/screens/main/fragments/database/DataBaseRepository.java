@@ -3,6 +3,7 @@ package com.smri.smarttracker.screens.main.fragments.database;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,8 @@ import com.smri.smarttracker.utils.Chemical;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class DataBaseRepository implements DataBaseContract.Repository {
 
@@ -55,6 +58,8 @@ public class DataBaseRepository implements DataBaseContract.Repository {
                         editor.apply();
                         loadListFromLab(laboratory);
                     }
+                }else{
+                    Log.e(TAG, "onFailure: ", task.getException());
                 }
             }
         });

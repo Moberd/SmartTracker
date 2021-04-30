@@ -1,7 +1,5 @@
 package com.smri.smarttracker.screens.editor;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,12 +7,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -23,11 +24,10 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.smri.smarttracker.R;
 import com.smri.smarttracker.screens.main.MainActivity;
-import com.smri.smarttracker.utils.Chemical;
-
-import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
+
+import static android.content.ContentValues.TAG;
 
 public class ChemEditorActivity extends AppCompatActivity implements ChemEditorContract.View {
     ImageButton backBtn;
@@ -71,12 +71,12 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     private void setUpBarcode() {
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
-            BitMatrix bitMatrix = multiFormatWriter.encode(id, BarcodeFormat.CODE_128,600,400);
+            BitMatrix bitMatrix = multiFormatWriter.encode(id, BarcodeFormat.CODE_128,2000,500);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             barCode.setImageBitmap(bitmap);
         } catch (WriterException e) {
-            e.printStackTrace();
+            Log.e(TAG, "setUpBarcode: ", e);
         }
     }
 
