@@ -7,28 +7,34 @@
     tools:context=".screens.editor.ChemEditorActivity"
     android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/backBtn"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_margin="@dimen/_16sdp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_margin="@dimen/_16sdp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     <RelativeLayout
         android:id="@+id/rellay1"
         android:layout_width="match_parent"
         android:layout_height="222dp"
-        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginBottom="66dp"
         android:paddingBottom="40dp">
 
         <RelativeLayout
             android:id="@+id/imgUser"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
@@ -66,112 +72,119 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="362dp"
-        android:layout_height="357dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="74dp"
-        android:orientation="vertical">
-
 
         <LinearLayout
-            android:id="@+id/info_item_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="362dp"
+            android:layout_height="357dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="74dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="52dp"
+
+            <LinearLayout
+                android:id="@+id/info_item_ll"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_height="wrap_content"
-                android:text="Item"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="13sp" />
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editName"
-                android:layout_width="300dp"
+                <TextView
+                    android:layout_width="52dp"
+                    android:layout_height="wrap_content"
+                    android:text="Item"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/editName"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:hint="Chemicals editor" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/colorBackgroundDark" />
+
+                <TextView
+                    android:layout_width="98dp"
+                    android:layout_height="wrap_content"
+                    android:text="Descripiton"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/editDescription"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginTop="20dp"
+                    android:hint="Descripiton" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/colorBackgroundDark" />
+
+                <TextView
+                    android:layout_width="93dp"
+                    android:layout_height="wrap_content"
+                    android:text="Lab number"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/editLabNumber"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginTop="20dp"
+                    android:hint="Lab number" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/colorBackgroundDark" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|center_vertical"
-                android:hint="Chemicals editor" />
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/colorBackgroundDark" />
+                <Button
+                    android:id="@+id/saveBtn"
+                    android:background="@drawable/btn_corner"
+                    style="@style/RoundedCornerButton"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:layout_gravity="left"
+                    android:text="Save"
+                    />
 
-            <TextView
-                android:layout_width="98dp"
-                android:layout_height="wrap_content"
-                android:text="Descripiton"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="13sp" />
-
-            <EditText
-                android:id="@+id/editDescription"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|center_vertical"
-                android:layout_marginTop="20dp"
-                android:hint="Descripiton" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/colorBackgroundDark" />
-
-            <TextView
-                android:layout_width="93dp"
-                android:layout_height="wrap_content"
-                android:text="Lab number"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="13sp" />
-
-            <EditText
-                android:id="@+id/editLabNumber"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|center_vertical"
-                android:layout_marginTop="20dp"
-                android:hint="Descripiton" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/colorBackgroundDark" />
-
+                <Button
+                    android:id="@+id/deleteBtn"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:layout_gravity="right"
+                    android:text="Delete" />
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/saveBtn"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_gravity="left"
-                android:text="Save" />
-
-            <Button
-                android:id="@+id/deleteBtn"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_gravity="right"
-                android:text="Delete" />
-        </LinearLayout>
-
     </LinearLayout>
-
-
+</androidx.core.widget.NestedScrollView>
 </RelativeLayout>
