@@ -48,40 +48,34 @@ public class DataBaseRepository implements DataBaseContract.Repository {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final DocumentReference userDoc = db.collection("users").document("testId"); //TODO!!!
         final SharedPreferences.Editor editor = mSP.edit();
-        userDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
-                    if(task.getResult() != null){
-                        String laboratory = task.getResult().getString("laboratory");
-                        editor.putString(APP_PREFERENCES_LABORATORY,laboratory);
-                        editor.apply();
-                        loadListFromLab(laboratory);
-                    }
-                }else{
-                    Log.e(TAG, "onFailure: ", task.getException());
+        userDoc.get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                if(task.getResult() != null){
+                    String laboratory = task.getResult().getString("laboratory");
+                    editor.putString(APP_PREFERENCES_LABORATORY,laboratory);
+                    editor.apply();
+                    loadListFromLab(laboratory);
                 }
+            }else{
+                Log.e(TAG, "onFailure: ", task.getException());
             }
         });
     }
 
     void loadListFromLab(String laboratory){
         final CollectionReference collRef = db.collection("databases").document(laboratory).collection("chemicals");
-        collRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    if(task.getResult() != null){
-                        QuerySnapshot allChems = task.getResult();
-                        ArrayList<Chemical> listChems = new ArrayList<>();
-                        for(DocumentSnapshot doc : allChems.getDocuments()){
-                            String id = doc.getId();
-                            String name = doc.getString("name");
-                            String desc = doc.getString("description");
-                            listChems.add(new Chemical(id,name,desc));
-                        }
-                        mPresenter.onDataLoaded(listChems);
+        collRef.get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                if(task.getResult() != null){
+                    QuerySnapshot allChems = task.getResult();
+                    ArrayList<Chemical> listChems = new ArrayList<>();
+                    for(DocumentSnapshot doc : allChems.getDocuments()){
+                        String id = doc.getId();
+                        String name = doc.getString("name");
+                        String desc = doc.getString("description");
+                        listChems.add(new Chemical(id,name,desc));
                     }
+                    mPresenter.onDataLoaded(listChems);
                 }
             }
         });

@@ -2,12 +2,14 @@ package com.smri.smarttracker.screens.editor;
 
 import android.content.SharedPreferences;
 
+import com.smri.smarttracker.utils.Chemical;
+
 public class ChemEditorPresenter implements ChemEditorContract.Presenter{
 
     boolean viewIsAttached = false;
-    ChemEditorContract.View mView = null;
-    SharedPreferences mSP;
-    ChemEditorContract.Repository mRepository;
+    private ChemEditorContract.View mView = null;
+    private SharedPreferences mSP;
+    private ChemEditorContract.Repository mRepository;
 
     public ChemEditorPresenter(SharedPreferences sp){
         mSP = sp;
@@ -39,9 +41,9 @@ public class ChemEditorPresenter implements ChemEditorContract.Presenter{
         return result;
     }
 
-    public void getChanges(String id,String name,String description){
-        if(!checkEmptiness(name,description)) {
-            mRepository.sentChangesToDB(id, name, description);
+    public void getChanges(String id,Chemical item){
+        if(!checkEmptiness(item.getName(),item.getDescription())) {
+            mRepository.sentChangesToDB(id, item);
             mView.showToast("Successful",ToastMode.SUCCESS);
         } else {
             mView.showToast("Empty fields",ToastMode.ERROR);
@@ -54,6 +56,14 @@ public class ChemEditorPresenter implements ChemEditorContract.Presenter{
             mRepository.deleteFromDB(id);
             mView.showToast("Deleted successful",ToastMode.SUCCESS);
         }
+    }
+    @Override
+    public void getChemInfo(String id){
+        mRepository.getChemInfo(id);
+    }
+
+    public void sendInfoToView(Chemical item){
+        mView.writeInfo(item);
     }
 
     public void changesComplete(){

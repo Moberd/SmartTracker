@@ -2,7 +2,6 @@ package com.smri.smarttracker.screens.editor;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -24,6 +23,7 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.smri.smarttracker.R;
 import com.smri.smarttracker.screens.main.MainActivity;
+import com.smri.smarttracker.utils.Chemical;
 
 import es.dmoral.toasty.Toasty;
 
@@ -62,10 +62,13 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         barCode = findViewById(R.id.elem_code);
         mPresenter.attachView(this);
         dialogAlert = createDialog();
-        if(!id.equals("NEWRECORD")) setUpBarcode();
+        if(!id.equals("NEWRECORD")) {
+            setUpBarcode();
+            mPresenter.getChemInfo(id);
+        }
         setUpListeners();
         hideDeleteBtn();
-        writeInfo();
+
     }
 
     private void setUpBarcode() {
@@ -81,44 +84,29 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     }
 
     void hideDeleteBtn(){
-        if(getIntent().getStringExtra("name").equals("NEWRECORD")){
+        if(id.equals("NEWRECORD")){
             deleteBtn.setVisibility(View.GONE);
         }
     }
 
     void setUpListeners(){
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        backBtn.setOnClickListener(v -> finish());
+        saveBtn.setOnClickListener(v -> {
+            String name = nameET.getText().toString();
+            String desc = descET.getText().toString();
+            Chemical item = new Chemical(id,name,desc);
+            mPresenter.getChanges(id,item);
         });
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = nameET.getText().toString();
-                String desc = descET.getText().toString();
-                mPresenter.getChanges(id,name,desc);
-            }
-        });
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogAlert.show();
-            }
-        });
+        deleteBtn.setOnClickListener(v -> dialogAlert.show());
     }
-    void writeInfo(){
-        if(!getIntent().getStringExtra("name").equals("NEWRECORD")) {
-            nameET.setText(getIntent().getStringExtra("name"));
-        }
-        if(!getIntent().getStringExtra("description").equals("NEWRECORD")) {
-            descET.setText(getIntent().getStringExtra("description"));
-        }
+
+    @Override
+    public void writeInfo(Chemical item){
+        nameET.setText(item.getName());
+        descET.setText(item.getDescription());
     }
     public void closeActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     AlertDialog createDialog(){
@@ -126,20 +114,9 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         builder.setTitle("Delete");
         builder.setMessage("Are you sure?");
         builder.setCancelable(true);
-        builder.setNegativeButton(android.R.string.no,new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                mPresenter.deleteChemical(id);
-            }
-        });
-        AlertDialog dialog = builder.create();
-        return dialog;
+        builder.setNegativeButton(android.R.string.no, (dialog, which) -> dialog.dismiss());
+        builder.setPositiveButton(android.R.string.yes, (dialog, which) -> mPresenter.deleteChemical(id));
+        return builder.create();
     }
 
     @Override

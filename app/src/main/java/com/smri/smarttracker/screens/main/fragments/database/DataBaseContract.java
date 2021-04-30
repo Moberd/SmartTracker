@@ -8,7 +8,7 @@ import java.util.List;
 public interface DataBaseContract {
     interface View {
         void updateList(ArrayList<Chemical> items);
-        void addNewChemical();
+        void addNewChemical(String new_id);
     }
 
     interface Presenter {

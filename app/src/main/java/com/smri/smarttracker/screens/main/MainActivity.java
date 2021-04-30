@@ -70,13 +70,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     void setUpListeners(){
         navigation.setOnNavigationItemSelectedListener(this);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(currFragment instanceof DataBaseFragment) {
-                    ((DataBaseFragment) currFragment).addItem();
-                } else if(currFragment instanceof ProfileFragment) {
-                    ((ProfileFragment) currFragment).editProfile();
-                }
+        fab.setOnClickListener(v -> {
+            if(currFragment instanceof DataBaseFragment) {
+                ((DataBaseFragment) currFragment).addItem();
+            } else if(currFragment instanceof ProfileFragment) {
+                ((ProfileFragment) currFragment).editProfile();
             }
         });
     }

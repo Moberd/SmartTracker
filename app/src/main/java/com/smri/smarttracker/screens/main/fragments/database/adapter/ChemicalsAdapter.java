@@ -48,15 +48,12 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
         final Chemical itemList = filteredList.get(position);
         holder.name.setText(itemList.getName());
         holder.description.setText(itemList.getDescription());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, ChemEditorActivity.class);
-                intent.putExtra("CHEM_ID",filteredList.get(position).getId());
-                intent.putExtra("name",filteredList.get(position).getName());
-                intent.putExtra("description",filteredList.get(position).getDescription());
-                mContext.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, ChemEditorActivity.class);
+            intent.putExtra("CHEM_ID",filteredList.get(position).getId());
+            intent.putExtra("name",filteredList.get(position).getName());
+            intent.putExtra("description",filteredList.get(position).getDescription());
+            mContext.startActivity(intent);
         });
     }
 

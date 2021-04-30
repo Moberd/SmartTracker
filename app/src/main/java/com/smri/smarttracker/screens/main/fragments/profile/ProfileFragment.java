@@ -28,12 +28,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, null);
         TextView signBtn = view.findViewById(R.id.singBtn);
-        signBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                exitFirebase();
-            }
-        }
+        signBtn.setOnClickListener(v -> exitFirebase()
         );
         return view;
     }
@@ -42,16 +37,11 @@ public class ProfileFragment extends Fragment {
         Toast.makeText(getContext(), "PROFILE CLICKED", Toast.LENGTH_SHORT).show();
     }
 
-    public void signIn(){
-        Toast.makeText(getContext(), "REG SCREEN CLICKED", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getContext(), LoginActivity.class);
-        getContext().startActivity(intent);
-    }
-
     public void exitFirebase(){
         FirebaseAuth.getInstance().signOut();
         Intent intent= new Intent(getContext(), SplashActivity.class);
         getContext().startActivity(intent);
+        getActivity().finish();
     }
 
 

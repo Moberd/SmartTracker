@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,15 +23,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.zxing.integration.android.IntentIntegrator;
 import com.smri.smarttracker.R;
 import com.smri.smarttracker.screens.editor.ChemEditorActivity;
 import com.smri.smarttracker.screens.main.fragments.database.adapter.ChemicalsAdapter;
-import com.smri.smarttracker.screens.main.scanner.ScannerActivity;
+import com.smri.smarttracker.screens.main.scanner.CaptureActivityAnyOrientation;
 import com.smri.smarttracker.utils.Chemical;
 import com.smri.smarttracker.utils.FabFragmentListener;
 
+import com.google.zxing.integration.android.IntentResult;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class DataBaseFragment extends Fragment implements DataBaseContract.View {
 
@@ -42,6 +43,10 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
     public FabFragmentListener listener;
     DataBaseContract.Presenter mPresenter;
     AlertDialog dialogAlert;
+    String scanContent;
+    String scanFormat;
+
+
 
     SharedPreferences mSP;
     public static final String APP_PREFERENCES = "mysettings";
@@ -111,11 +116,9 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
         mPresenter.detachView();
     }
 
-    public void addNewChemical(){
+    public void addNewChemical(String new_id){
         Intent intent = new Intent(getContext(), ChemEditorActivity.class);
-        intent.putExtra("CHEM_ID","NEWRECORD");
-        intent.putExtra("name","NEWRECORD");
-        intent.putExtra("description","NEWRECORD");
+        intent.putExtra("CHEM_ID",new_id);
         getContext().startActivity(intent);
     }
 
@@ -132,18 +135,8 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
         builder.setTitle("NEW ITEM");
         builder.setMessage("How do you want to add item?");
         builder.setCancelable(true);
-        builder.setNegativeButton("SCAN CODE",new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                callScanner();
-            }
-        });
-        builder.setPositiveButton("ADD NEW CHEM", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                addNewChemical();
-            }
-        });
+        builder.setNegativeButton("SCAN CODE", (dialog, which) -> callScanner());
+        builder.setPositiveButton("ADD NEW CHEM", (dialog, which) -> addNewChemical("NEWRECORD"));
         return builder.create();
     }
 
@@ -152,7 +145,32 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
     }
 
     public void callScanner(){
-        startActivity(new Intent(getContext(), ScannerActivity.class));
-
+        IntentIntegrator scanIntegrator = IntentIntegrator.forSupportFragment(DataBaseFragment.this);
+        scanIntegrator.setPrompt("Scan");
+        scanIntegrator.setBeepEnabled(true);
+        scanIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+        scanIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
+        scanIntegrator.setCaptureActivity(CaptureActivityAnyOrientation.class);
+        scanIntegrator.setOrientationLocked(true);
+        scanIntegrator.setBarcodeImageEnabled(true);
+        scanIntegrator.initiateScan();
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (scanningResult != null) {
+            if (scanningResult.getContents() != null) {
+                scanContent = scanningResult.getContents().toString();
+                scanFormat = scanningResult.getFormatName().toString();
+            }
+            Toast.makeText(getActivity(), scanContent + "   type:" + scanFormat, Toast.LENGTH_SHORT).show();
+            addNewChemical(scanContent);
+        } else {
+            Toast.makeText(getActivity(), "Nothing scanned", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }
