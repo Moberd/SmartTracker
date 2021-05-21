@@ -46,7 +46,7 @@
             android:layout_below="@+id/imgUser"
             android:layout_centerHorizontal="true">
             <TextView
-                android:id="@+id/user_name"
+                android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15sp"
@@ -72,7 +72,7 @@
             android:layout_below="@+id/linear_user"
             android:layout_centerHorizontal="true">
             <TextView
-                android:id="@+id/laboratory"
+                android:id="@+id/tv_laboratory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linear_user"

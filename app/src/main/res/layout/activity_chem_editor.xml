@@ -165,15 +165,14 @@
 
                 <Button
                     android:id="@+id/saveBtn"
-                    android:background="@drawable/btn_corner"
                     style="@style/RoundedCornerButton"
-                    android:layout_marginTop="@dimen/_2sdp"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:gravity="center"
                     android:layout_gravity="left"
-                    android:text="Save"
-                    />
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@drawable/btn_corner"
+                    android:gravity="center"
+                    android:text="Save" />
 
                 <Button
                     android:id="@+id/deleteBtn"
