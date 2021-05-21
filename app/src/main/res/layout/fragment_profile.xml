@@ -38,30 +38,59 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/user_name"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/linear_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgUser"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15sp"
-            android:fontFamily="sans-serif-light"
-            android:text="User Name"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="32sp" />
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:fontFamily="sans-serif-light"
+                android:text="User Name"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="32sp" />
+            <ImageView
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"
+                android:id="@+id/edit_username"
+                android:src="@drawable/ic_baseline_edit_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-
-        <TextView
-            android:id="@+id/laboratory"
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/linear_lab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/user_name"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif"
-            android:text="Laboratory"
-            android:textAllCaps="true"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="14sp" />
+            android:layout_below="@+id/linear_user"
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/laboratory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linear_user"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif"
+                android:text="Laboratory"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp" />
+            <ImageView
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"
+                android:id="@+id/edit_lab"
+                android:src="@drawable/ic_baseline_edit_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -91,15 +120,27 @@
                     android:text="Email"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/email"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="abaabab@sfedu.ru"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="abaabab@sfedu.ru"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18sp" />
+                    <ImageView
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:visibility="gone"
+                        android:id="@+id/edit_email"
+                        android:src="@drawable/ic_baseline_edit_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -120,23 +161,33 @@
                     android:layout_height="wrap_content"
                     android:text="Phone"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/phone_number"
+                    android:textSize="13sp"/>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="+7399302290"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp" />
-
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_phone_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="+7399302290"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18sp" />
+                    <ImageView
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:visibility="gone"
+                        android:id="@+id/edit_phone_number"
+                        android:src="@drawable/ic_baseline_edit_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="15dp"
                     android:background="@color/colorBackgroundDark" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -152,15 +203,27 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="13sp" />
 
-                <TextView
-                    android:id="@+id/laboratory_number"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="123"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp" />
-
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_laboratory_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="123"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18sp" />
+                    <ImageView
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:visibility="gone"
+                        android:id="@+id/edit_lab_number"
+                        android:src="@drawable/ic_baseline_edit_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

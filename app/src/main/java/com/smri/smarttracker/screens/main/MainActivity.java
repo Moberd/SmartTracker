@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -52,11 +51,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 currFragment = new DataBaseFragment();
                 ((DataBaseFragment) currFragment).listener = this;
                 fab.setImageResource(R.drawable.ic_baseline_add_24);
+                fab.setTag(R.drawable.ic_baseline_add_24);
                 break;
             case R.id.profile_icon:
                 currFragment = new ProfileFragment();
                 ((ProfileFragment) currFragment).listener = this;
                 fab.setImageResource(R.drawable.ic_baseline_edit_24);
+                fab.setTag(R.drawable.ic_baseline_edit_24);
                 break;
         }
         return loadFragment(currFragment);
@@ -67,14 +68,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return fab;
     }
 
+    public void changeFABIcon(){
+        if((int)fab.getTag() == R.drawable.ic_baseline_edit_24){
+            fab.setImageResource(R.drawable.ic_baseline_check_24);
+            fab.setTag(R.drawable.ic_baseline_check_24);
+        } else if((int)fab.getTag() == R.drawable.ic_baseline_check_24){
+            fab.setImageResource(R.drawable.ic_baseline_edit_24);
+            fab.setTag(R.drawable.ic_baseline_edit_24);
+        }
+    }
+
     void setUpListeners(){
         navigation.setOnNavigationItemSelectedListener(this);
 
         fab.setOnClickListener(v -> {
             if(currFragment instanceof DataBaseFragment) {
                 ((DataBaseFragment) currFragment).addItem();
-            } else if(currFragment instanceof ProfileFragment) {
-                ((ProfileFragment) currFragment).editProfile();
+            } else if(currFragment instanceof ProfileFragment ) {
+                ((ProfileFragment) currFragment).editFABListener();
+                changeFABIcon();
             }
         });
     }
