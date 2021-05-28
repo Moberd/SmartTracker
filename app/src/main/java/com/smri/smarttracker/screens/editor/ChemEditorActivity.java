@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +41,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     SharedPreferences mSP;
     ImageView barCode;
     AlertDialog dialogAlert;
+    TextView chem_id;
     public static final String APP_PREFERENCES = "mysettings";
 
     @Override
@@ -60,6 +62,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         nameET = findViewById(R.id.editName);
         descET = findViewById(R.id.editDescription);
         barCode = findViewById(R.id.elem_code);
+        chem_id = findViewById(R.id.id_number);
         mPresenter.attachView(this);
         dialogAlert = createDialog();
         if(!id.equals("NEWRECORD")) {
@@ -104,6 +107,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     public void writeInfo(Chemical item){
         nameET.setText(item.getName());
         descET.setText(item.getDescription());
+        chem_id.setText(id);
     }
     public void closeActivity(){
         finish();
