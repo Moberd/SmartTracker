@@ -102,14 +102,16 @@
         android:layout_marginTop="-3dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -278,13 +280,24 @@
                     app:layout_constraintVertical_bias="0.977" />
 
             </RelativeLayout>
-
         </LinearLayout>
 
+        <ProgressBar
+            android:id="@+id/progressProfile"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="@dimen/_48sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_gravity="center|top"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </RelativeLayout>
+</RelativeLayout>
 
 
 
