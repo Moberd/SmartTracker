@@ -127,7 +127,6 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
         adapter.updateItems(items);
         recyclerView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
-
     }
 
     AlertDialog createDialog(Context context){

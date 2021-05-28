@@ -31,6 +31,11 @@
         <item name="colorControlHighlight">#1000af</item>
     </style>
 
+    <style name="Dialog">
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
     <style name="CustomShapeAppearance">
         <item name="neumorph_cornerFamily">rounded</item>
         <item name="neumorph_cornerSize">32dp</item>

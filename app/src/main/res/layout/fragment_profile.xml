@@ -7,7 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <RelativeLayout
+        android:visibility="invisible"
         android:id="@+id/rellay1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,12 +66,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:orientation="horizontal"
             android:id="@+id/linear_lab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear_user"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal">
+            android:layout_centerHorizontal="true">
 
             <TextView
                 android:id="@+id/tv_laboratory"
@@ -96,6 +98,8 @@
     </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_data"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rellay1"
@@ -171,7 +175,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone"
+                    android:text="Contact Phone"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="13sp" />
 
@@ -282,20 +286,19 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progressProfile"
-            style="@style/Widget.AppCompat.ProgressBar"
-            android:layout_width="@dimen/_48sdp"
-            android:layout_height="@dimen/_48sdp"
-            android:layout_gravity="center|top"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/colorPrimaryDark"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/progressProfile"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="@dimen/_48sdp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:visibility="visible"/>
 
 </RelativeLayout>
 
