@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_230sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:paddingBottom="30dp">
 
         <RelativeLayout

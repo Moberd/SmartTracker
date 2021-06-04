@@ -106,18 +106,18 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         editMode = true;
         btnEditEmail.setVisibility(View.VISIBLE);
         btnEditPhone.setVisibility(View.VISIBLE);
-        //btnEditLabNumber.setVisibility(View.VISIBLE);
+        btnEditLabNumber.setVisibility(View.VISIBLE);
         btnEditUserName.setVisibility(View.VISIBLE);
-        //btnEditLab.setVisibility(View.VISIBLE);
+        btnEditLab.setVisibility(View.VISIBLE);
     }
 
     public void exitEditMode(){
         editMode = false;
         btnEditEmail.setVisibility(View.GONE);
         btnEditPhone.setVisibility(View.GONE);
-        //btnEditLabNumber.setVisibility(View.GONE);
+        btnEditLabNumber.setVisibility(View.GONE);
         btnEditUserName.setVisibility(View.GONE);
-        //btnEditUserLab.setVisibility(View.GONE);
+        btnEditLab.setVisibility(View.GONE);
     }
 
     void setUpListeners(){
@@ -180,6 +180,25 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
             });
             dialog.show();
         });
+
+        btnEditLab.setOnClickListener(v -> {
+            Dialog dialog = new Dialog(getActivity(), R.style.Dialog);
+            dialog.setContentView(R.layout.edit_dialog_layout);
+            dialog.setTitle("Change Your Laboratory");
+            Button btnSave = dialog.findViewById(R.id.btnSave);
+            EditText editText = dialog.findViewById(R.id.etNew);
+            btnSave.setOnClickListener(dialogV -> {
+                String newText = editText.getText().toString();
+                tvLab.setText(newText);
+                mPresenter.onLabChanged(newText);
+                dialog.dismiss();
+            });
+            Button btnCancel = dialog.findViewById(R.id.btnCancel);
+            btnCancel.setOnClickListener(dialogV -> {
+                dialog.dismiss();
+            });
+            dialog.show();
+        });
     }
 
     public void signOutBtn(){
@@ -191,12 +210,13 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
 
 
     @Override
-    public void showData(String name, String email, String phone) {
+    public void showData(String name, String email, String phone, String lab) {
         progressBar.setVisibility(View.GONE);
         rellay1.setVisibility(View.VISIBLE);
         csData.setVisibility(View.VISIBLE);
         tvUserName.setText(name);
         tvEmail.setText(email);
         tvPhone.setText(phone);
+        tvLab.setText(lab);
     }
 }

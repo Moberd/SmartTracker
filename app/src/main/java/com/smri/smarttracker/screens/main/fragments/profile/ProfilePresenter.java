@@ -38,13 +38,18 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     }
 
     @Override
+    public void onLabChanged(String lab) {
+        mRepository.setLab(lab);
+    }
+
+    @Override
     public void getDataFormRep() {
         mRepository.getData();
     }
 
     @Override
-    public void sendDataToView(String name, String email, String phone) {
-        mView.showData(name,email,phone);
+    public void sendDataToView(String name, String email, String phone, String lab) {
+        mView.showData(name,email,phone, lab);
     }
 
     @Override

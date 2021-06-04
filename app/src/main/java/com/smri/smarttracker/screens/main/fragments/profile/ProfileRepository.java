@@ -28,7 +28,8 @@ public class ProfileRepository implements ProfileContract.Repository {
                 String name = documentSnapshot.getString("name");
                 String email = documentSnapshot.getString("email");
                 String phone = documentSnapshot.getString("phone_number");
-                mPresenter.sendDataToView(name,email, phone);
+                String lab = documentSnapshot.getString("laboratory");
+                mPresenter.sendDataToView(name, email, phone, lab);
             }
         });
     }
@@ -48,4 +49,8 @@ public class ProfileRepository implements ProfileContract.Repository {
         db.collection("users").document(userID).update("phone_number",phone);
     }
 
+    @Override
+    public void setLab(String lab) {
+        db.collection("users").document(userID).update("laboratory",lab);
+    }
 }
