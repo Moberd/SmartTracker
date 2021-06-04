@@ -33,15 +33,12 @@ public class ChemEditorRepository implements ChemEditorContract.Repository {
 
     @Override
     public void sentChangesToDB(String id,Chemical item) {
-        Map<String, Object> data = new HashMap<>();
-        data.put("name",item.getName());
-        data.put("description", item.getDescription());
         String laboratory = mSP.getString(APP_PREFERENCES_LABORATORY,"");
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         if(!id.equals("NEWRECORD")) {
-            db.collection("databases").document(laboratory).collection("chemicals").document(id).set(data, SetOptions.merge());
+            db.collection("databases").document(laboratory).collection("chemicals").document(id).set(item, SetOptions.merge());
         } else {
-            db.collection("databases").document(laboratory).collection("chemicals").add(data);
+            db.collection("databases").document(laboratory).collection("chemicals").add(item);
         }
         mPresenter.changesComplete();
     }

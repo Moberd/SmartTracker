@@ -34,6 +34,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     ImageButton backBtn;
     EditText nameET;
     EditText descET;
+    EditText locationET;
     Button saveBtn;
     Button deleteBtn;
     ChemEditorPresenter mPresenter;
@@ -61,6 +62,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         saveBtn = findViewById(R.id.saveBtn);
         nameET = findViewById(R.id.editName);
         descET = findViewById(R.id.editDescription);
+        locationET = findViewById(R.id.editLocation);
         barCode = findViewById(R.id.elem_code);
         chem_id = findViewById(R.id.id_number);
         mPresenter.attachView(this);
@@ -97,7 +99,8 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         saveBtn.setOnClickListener(v -> {
             String name = nameET.getText().toString();
             String desc = descET.getText().toString();
-            Chemical item = new Chemical(id,name,desc);
+            String loc = locationET.getText().toString();
+            Chemical item = new Chemical(id,name,desc,loc);
             mPresenter.getChanges(id,item);
         });
         deleteBtn.setOnClickListener(v -> dialogAlert.show());
@@ -107,6 +110,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     public void writeInfo(Chemical item){
         nameET.setText(item.getName());
         descET.setText(item.getDescription());
+        locationET.setText(item.getLocation());
         chem_id.setText(id);
     }
     public void closeActivity(){

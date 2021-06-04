@@ -133,12 +133,12 @@
                 <TextView
                     android:layout_width="93dp"
                     android:layout_height="wrap_content"
-                    android:text="Lab number"
+                    android:text="Location"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="13sp" />
 
                 <EditText
-                    android:id="@+id/editLabNumber"
+                    android:id="@+id/editLocation"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|center_vertical"

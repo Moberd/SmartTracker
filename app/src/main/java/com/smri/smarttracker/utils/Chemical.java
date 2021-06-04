@@ -6,12 +6,14 @@ public class Chemical {
     private String creator;
     private String description;
     private String id;
+    private String location;
 
-    public Chemical(String name, String creator, String description, String id){
+    public Chemical(String name, String creator, String description, String location, String id){
         this.name = name;
         this.creator = creator;
         this.description = description;
         this.id = id;
+        this.location = location;
     }
 
     public Chemical(String name, String description){
@@ -26,6 +28,14 @@ public class Chemical {
         this.description = description;
         creator = "";
         this.id = id;
+    }
+
+    public Chemical(String id, String name, String description, String location){
+        this.name = name;
+        this.description = description;
+        creator = "";
+        this.id = id;
+        this.location = location;
     }
 
     public Chemical(){}
@@ -62,4 +72,11 @@ public class Chemical {
         this.creator = creator;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }
