@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 
 import com.smri.smarttracker.utils.Chemical;
 
+import java.util.ArrayList;
+
 public class ChemEditorPresenter implements ChemEditorContract.Presenter{
 
     boolean viewIsAttached = false;
@@ -64,6 +66,16 @@ public class ChemEditorPresenter implements ChemEditorContract.Presenter{
 
     public void sendInfoToView(Chemical item){
         mView.writeInfo(item);
+    }
+
+    @Override
+    public void getAutoCompData() {
+        mRepository.getAutoCompFromDB();
+    }
+
+    @Override
+    public void sendAutoCompData(ArrayList<String> data) {
+        mView.attachAutoCompData(data);
     }
 
     public void changesComplete(){

@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_st_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".screens.editor.ChemEditorActivity"></activity>
+        <activity
+            android:name=".screens.editor.ChemEditorActivity"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
         <activity android:name=".screens.login.LoginActivity"></activity>
         <activity android:name=".screens.main.scanner.CaptureActivityAnyOrientation"></activity>
         <activity android:name=".screens.splash.SplashActivity">

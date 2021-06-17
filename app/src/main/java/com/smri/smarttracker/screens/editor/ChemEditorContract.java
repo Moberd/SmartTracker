@@ -3,11 +3,14 @@ package com.smri.smarttracker.screens.editor;
 
 import com.smri.smarttracker.utils.Chemical;
 
+import java.util.ArrayList;
+
 public interface ChemEditorContract {
     interface View{
         void closeActivity();
         void showToast(String message,ToastMode mode);
         void writeInfo(Chemical item);
+        void attachAutoCompData(ArrayList<String> data);
     }
     interface Presenter{
         void attachView(View view);
@@ -17,11 +20,14 @@ public interface ChemEditorContract {
         void changesComplete();
         void getChemInfo(String id);
         void sendInfoToView(Chemical item);
+        void getAutoCompData();
+        void sendAutoCompData(ArrayList<String> data);
     }
     interface Repository{
         void attachPresenter(Presenter presenter);
         void sentChangesToDB(String id,Chemical item);
         void deleteFromDB(String id);
         void getChemInfo(String id);
+        void getAutoCompFromDB();
     }
 }

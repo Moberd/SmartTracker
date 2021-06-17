@@ -12,7 +12,7 @@
             android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageButton
@@ -137,13 +137,14 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="13sp" />
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/editLocation"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|center_vertical"
                     android:layout_marginTop="20dp"
-                    android:hint="Lab number" />
+                    android:dropDownAnchor="@id/editLocation"
+                    android:hint="Location" />
 
                 <View
                     android:layout_width="match_parent"

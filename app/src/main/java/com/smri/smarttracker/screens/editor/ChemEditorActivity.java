@@ -8,6 +8,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,6 +28,8 @@ import com.smri.smarttracker.R;
 import com.smri.smarttracker.screens.main.MainActivity;
 import com.smri.smarttracker.utils.Chemical;
 
+import java.util.ArrayList;
+
 import es.dmoral.toasty.Toasty;
 
 import static android.content.ContentValues.TAG;
@@ -34,7 +38,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     ImageButton backBtn;
     EditText nameET;
     EditText descET;
-    EditText locationET;
+    AutoCompleteTextView locationET;
     Button saveBtn;
     Button deleteBtn;
     ChemEditorPresenter mPresenter;
@@ -43,6 +47,8 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     ImageView barCode;
     AlertDialog dialogAlert;
     TextView chem_id;
+    ArrayList<String> autoCompData;
+
     public static final String APP_PREFERENCES = "mysettings";
 
     @Override
@@ -71,9 +77,9 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
             setUpBarcode();
             mPresenter.getChemInfo(id);
         }
+        mPresenter.getAutoCompData();
         setUpListeners();
         hideDeleteBtn();
-
     }
 
     private void setUpBarcode() {
@@ -113,6 +119,13 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         locationET.setText(item.getLocation());
         chem_id.setText(id);
     }
+
+    @Override
+    public void attachAutoCompData(ArrayList<String> data) {
+        autoCompData = data;
+        locationET.setAdapter(new ArrayAdapter<>(ChemEditorActivity.this, android.R.layout.simple_list_item_1, autoCompData));
+    }
+
     public void closeActivity(){
         finish();
     }
