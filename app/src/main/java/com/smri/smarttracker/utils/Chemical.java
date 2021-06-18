@@ -1,5 +1,7 @@
 package com.smri.smarttracker.utils;
 
+import java.util.GregorianCalendar;
+
 public class Chemical {
 
     private String name;
@@ -7,13 +9,23 @@ public class Chemical {
     private String description;
     private String id;
     private String location;
+    private String createTime;
 
-    public Chemical(String name, String creator, String description, String location, String id){
+    public Chemical(String id, String name, String description, String location, String creator) {
         this.name = name;
         this.creator = creator;
         this.description = description;
         this.id = id;
         this.location = location;
+    }
+
+    public Chemical(String id, String name, String description, String location, String creator, String createTime) {
+        this.name = name;
+        this.creator = creator;
+        this.description = description;
+        this.id = id;
+        this.location = location;
+        this.createTime = createTime;
     }
 
     public Chemical(String name, String description){
@@ -78,5 +90,13 @@ public class Chemical {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 }

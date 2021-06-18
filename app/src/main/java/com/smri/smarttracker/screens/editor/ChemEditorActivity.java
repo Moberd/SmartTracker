@@ -14,11 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
+import com.google.type.DateTime;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -29,6 +32,7 @@ import com.smri.smarttracker.screens.main.MainActivity;
 import com.smri.smarttracker.utils.Chemical;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 import es.dmoral.toasty.Toasty;
 
@@ -38,6 +42,8 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     ImageButton backBtn;
     EditText nameET;
     EditText descET;
+    EditText creatorET;
+    EditText timeET;
     AutoCompleteTextView locationET;
     Button saveBtn;
     Button deleteBtn;
@@ -48,6 +54,8 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     AlertDialog dialogAlert;
     TextView chem_id;
     ArrayList<String> autoCompData;
+    ProgressBar progressBar;
+    NestedScrollView nestedScrollView;
 
     public static final String APP_PREFERENCES = "mysettings";
 
@@ -68,18 +76,25 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         saveBtn = findViewById(R.id.saveBtn);
         nameET = findViewById(R.id.editName);
         descET = findViewById(R.id.editDescription);
+        creatorET = findViewById(R.id.editCreator);
+        timeET = findViewById(R.id.editTime);
         locationET = findViewById(R.id.editLocation);
         barCode = findViewById(R.id.elem_code);
         chem_id = findViewById(R.id.id_number);
+        progressBar = findViewById(R.id.progressEditor);
+        nestedScrollView = findViewById(R.id.editorNestedSV);
         mPresenter.attachView(this);
         dialogAlert = createDialog();
         if(!id.equals("NEWRECORD")) {
             setUpBarcode();
             mPresenter.getChemInfo(id);
+        } else {
+            hideLoading();
+            setCreateTime();
+            hideDeleteBtn();
         }
         mPresenter.getAutoCompData();
         setUpListeners();
-        hideDeleteBtn();
     }
 
     private void setUpBarcode() {
@@ -100,13 +115,25 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         }
     }
 
+    void hideLoading(){
+        progressBar.setVisibility(View.GONE);
+        nestedScrollView.setVisibility(View.VISIBLE);
+    }
+
+    void setCreateTime(){
+        GregorianCalendar calendar = new GregorianCalendar();
+        timeET.setText(calendar.getTime().toString());
+    }
+
     void setUpListeners(){
         backBtn.setOnClickListener(v -> finish());
         saveBtn.setOnClickListener(v -> {
             String name = nameET.getText().toString();
             String desc = descET.getText().toString();
             String loc = locationET.getText().toString();
-            Chemical item = new Chemical(id,name,desc,loc);
+            String creator = creatorET.getText().toString();
+            String time = timeET.getText().toString();
+            Chemical item = new Chemical(id,name,desc,loc,creator,time);
             mPresenter.getChanges(id,item);
         });
         deleteBtn.setOnClickListener(v -> dialogAlert.show());
@@ -114,9 +141,12 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
 
     @Override
     public void writeInfo(Chemical item){
+        hideLoading();
         nameET.setText(item.getName());
         descET.setText(item.getDescription());
         locationET.setText(item.getLocation());
+        creatorET.setText(item.getCreator());
+        timeET.setText(item.getCreateTime());
         chem_id.setText(id);
     }
 
