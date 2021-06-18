@@ -7,16 +7,16 @@
 
     <Button
         android:id="@+id/button2"
+        style="@style/RoundedCornerButton"
         android:layout_width="208dp"
         android:layout_height="0dp"
+        android:layout_gravity="left"
         android:layout_marginTop="149dp"
         android:layout_marginBottom="26dp"
-        android:text="Join lab"
-        android:textSize="@dimen/_15sdp"
-        style="@style/RoundedCornerButton"
-        android:layout_gravity="left"
         android:background="@drawable/btn_corner"
         android:gravity="center"
+        android:text="Join lab"
+        android:textSize="@dimen/_15sdp"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -25,17 +25,74 @@
 
     <Button
         android:id="@+id/button3"
+        style="@style/RoundedCornerButton"
         android:layout_width="207dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="408dp"
-        android:text="Create new lab"
-        style="@style/RoundedCornerButton"
-        android:textSize="@dimen/_15sdp"
         android:layout_gravity="left"
+        android:layout_marginBottom="408dp"
         android:background="@drawable/btn_corner"
         android:gravity="center"
+        android:text="Create new lab"
+        android:textSize="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <LinearLayout
+        android:id="@+id/info_item_ll"
+        android:layout_width="320dp"
+        android:layout_height="191dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintVertical_bias="0.055">
+
+        <TextView
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:text="Lab name"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/newLabName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:hint="Chemicals editor" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorBackgroundDark" />
+
+        <TextView
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:text="Lab Password"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/editDescription"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginTop="20dp"
+            android:hint="Descripiton" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorBackgroundDark" />
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
