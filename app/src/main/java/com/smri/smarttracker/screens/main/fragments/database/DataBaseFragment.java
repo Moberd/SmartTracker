@@ -65,10 +65,6 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
         recyclerView = view.findViewById(R.id.database_chem);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        ArrayList<Chemical> list = new ArrayList<Chemical>();
-        adapter = new ChemicalsAdapter(list,getActivity());
-        recyclerView.setAdapter(adapter);
-
         mPresenter.attachView(this);
         mPresenter.loadData();
         dialogAlert = createDialog(view.getContext());
@@ -124,7 +120,8 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
 
     @Override
     public void updateList(ArrayList<Chemical> items) {
-        adapter.updateItems(items);
+        adapter = new ChemicalsAdapter(items, getActivity());
+        recyclerView.setAdapter(adapter);
         recyclerView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
     }

@@ -70,10 +70,8 @@ public class DataBaseRepository implements DataBaseContract.Repository {
                     QuerySnapshot allChems = task.getResult();
                     ArrayList<Chemical> listChems = new ArrayList<>();
                     for(DocumentSnapshot doc : allChems.getDocuments()){
-                        String id = doc.getId();
-                        String name = doc.getString("name");
-                        String desc = doc.getString("description");
-                        listChems.add(new Chemical(id,name,desc));
+                        Chemical item = doc.toObject(Chemical.class);
+                        listChems.add(item);
                     }
                     mPresenter.onDataLoaded(listChems);
                 }

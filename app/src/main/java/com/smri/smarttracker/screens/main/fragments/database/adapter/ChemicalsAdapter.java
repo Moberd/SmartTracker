@@ -74,7 +74,9 @@ public class ChemicalsAdapter extends RecyclerView.Adapter<ChemicalsAdapter.View
                     charString = charSequence.toString().toLowerCase();
                     ArrayList<Chemical> _filteredList = new ArrayList<>();
                     for (Chemical chem : listItems) {
-                        if (chem.getName().toLowerCase().contains(charString) || chem.getDescription().toLowerCase().contains(charString)) {
+                        if (chem.getName().toLowerCase().contains(charString) || chem.getDescription().toLowerCase().contains(charString)
+                           || ((chem.getLocation() != null) && chem.getLocation().toLowerCase().contains(charString))
+                           || ((chem.getCreator() != null) && chem.getCreator().toLowerCase().contains(charString))) {
                             _filteredList.add(chem);
                         }
                     }
