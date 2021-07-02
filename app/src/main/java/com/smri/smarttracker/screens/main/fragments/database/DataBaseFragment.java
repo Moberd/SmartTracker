@@ -75,6 +75,14 @@ public class DataBaseFragment extends Fragment implements DataBaseContract.View 
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.search_menu, menu);
         MenuItem search = menu.findItem(R.id.app_bar_search);
+        MenuItem scan_search = menu.findItem(R.id.code_scan);
+        scan_search.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                callScanner();
+                return true;
+            }
+        });
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
         search(searchView);
         super.onCreateOptionsMenu(menu, inflater);
