@@ -78,6 +78,11 @@ public class ChemEditorPresenter implements ChemEditorContract.Presenter{
         mView.attachAutoCompData(data);
     }
 
+    @Override
+    public void newChemScanned(String id) {
+        mView.scannedNew(id);
+    }
+
     public void changesComplete(){
         mView.closeActivity();
     }

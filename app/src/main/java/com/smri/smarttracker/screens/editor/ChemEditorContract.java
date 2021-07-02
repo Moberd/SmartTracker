@@ -11,6 +11,7 @@ public interface ChemEditorContract {
         void showToast(String message,ToastMode mode);
         void writeInfo(Chemical item);
         void attachAutoCompData(ArrayList<String> data);
+        void scannedNew(String id);
     }
     interface Presenter{
         void attachView(View view);
@@ -22,6 +23,7 @@ public interface ChemEditorContract {
         void sendInfoToView(Chemical item);
         void getAutoCompData();
         void sendAutoCompData(ArrayList<String> data);
+        void newChemScanned(String id);
     }
     interface Repository{
         void attachPresenter(Presenter presenter);

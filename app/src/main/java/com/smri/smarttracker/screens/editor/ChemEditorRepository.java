@@ -42,7 +42,18 @@ public class ChemEditorRepository implements ChemEditorContract.Repository {
         if(!id.equals("NEWRECORD")) {
             db.collection("databases").document(laboratory).collection("chemicals").document(id).set(item, SetOptions.merge());
         } else {
-            db.collection("databases").document(laboratory).collection("chemicals").add(item);
+            db.collection("databases").document(laboratory).collection("chemicals").add(item).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentReference> task) {
+                    if (task.isSuccessful()) {
+                        DocumentReference document = task.getResult();
+                        if (document != null) {
+                            String id = document.getId();
+                            updateID(id);
+                        }
+                    }
+                }
+            });
         }
         String loc = item.getLocation();
         Query capitalCities = db.collection("databases").document(laboratory).collection("locations").whereEqualTo("name", loc);
@@ -52,6 +63,13 @@ public class ChemEditorRepository implements ChemEditorContract.Repository {
            }
         });
         mPresenter.changesComplete();
+    }
+
+    public void updateID(String id){
+        String laboratory = mSP.getString(APP_PREFERENCES_LABORATORY,"");
+        Map<String, String> update = new HashMap<>();
+        update.put("id",id);
+        db.collection("databases").document(laboratory).collection("chemicals").document(id).set(update, SetOptions.merge());
     }
 
     public void addNewLoc(String location){
@@ -76,6 +94,9 @@ public class ChemEditorRepository implements ChemEditorContract.Repository {
             if(documentSnapshot.exists()) {
                 Chemical item = documentSnapshot.toObject(Chemical.class);
                 mPresenter.sendInfoToView(item);
+            } else {
+                Chemical item = new Chemical(id);
+                mPresenter.newChemScanned(id);
             }
         });
     }

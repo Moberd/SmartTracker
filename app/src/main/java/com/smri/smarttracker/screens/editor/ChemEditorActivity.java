@@ -58,7 +58,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     NestedScrollView nestedScrollView;
 
     public static final String APP_PREFERENCES = "mysettings";
-
+    public static final String APP_PREFERENCES_USER = "user";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +91,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         } else {
             hideLoading();
             setCreateTime();
+            setCreator();
             hideDeleteBtn();
         }
         mPresenter.getAutoCompData();
@@ -125,6 +126,11 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         timeET.setText(calendar.getTime().toString());
     }
 
+    void setCreator(){
+        String userName = mSP.getString(APP_PREFERENCES_USER,"ERROR");
+        creatorET.setText(userName);
+    }
+
     void setUpListeners(){
         backBtn.setOnClickListener(v -> finish());
         saveBtn.setOnClickListener(v -> {
@@ -154,6 +160,15 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
     public void attachAutoCompData(ArrayList<String> data) {
         autoCompData = data;
         locationET.setAdapter(new ArrayAdapter<>(ChemEditorActivity.this, android.R.layout.simple_list_item_1, autoCompData));
+    }
+
+    @Override
+    public void scannedNew(String id) {
+        hideLoading();
+        hideDeleteBtn();
+        setCreateTime();
+        setCreator();
+        chem_id.setText(id);
     }
 
     public void closeActivity(){

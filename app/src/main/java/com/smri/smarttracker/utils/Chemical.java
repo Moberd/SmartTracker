@@ -50,6 +50,15 @@ public class Chemical {
         this.location = location;
     }
 
+    public Chemical(String id){
+        this.id = id;
+        name = "";
+        description = "";
+        creator = "";
+        createTime = "";
+        location = "";
+    }
+
     public Chemical(){}
 
     public String getId() {
