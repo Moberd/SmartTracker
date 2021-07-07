@@ -34,6 +34,7 @@ public class DataBaseRepository implements DataBaseContract.Repository {
     SharedPreferences mSP;
     public static final String APP_PREFERENCES_LABORATORY = "laboratory";
     public static final String APP_PREFERENCES_USER = "user";
+    public static final String APP_PREFERENCES_LOCATION = "laboratory_number";
 
     public DataBaseRepository(SharedPreferences sp){
         mSP = sp;
@@ -53,9 +54,11 @@ public class DataBaseRepository implements DataBaseContract.Repository {
             if(task.isSuccessful()){
                 if(task.getResult() != null){
                     String laboratory = task.getResult().getString("laboratory").toLowerCase();
-                    String name = task.getResult().getString("name").toLowerCase();
+                    String name = task.getResult().getString("name");
+                    String loc = task.getResult().getString("laboratory_number");
                     editor.putString(APP_PREFERENCES_LABORATORY,laboratory);
                     editor.putString(APP_PREFERENCES_USER,name);
+                    editor.putString(APP_PREFERENCES_LOCATION,loc);
                     editor.apply();
                     loadListFromLab(laboratory);
                 }

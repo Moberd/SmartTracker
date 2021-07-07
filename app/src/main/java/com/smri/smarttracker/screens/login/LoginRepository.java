@@ -107,11 +107,11 @@ public class LoginRepository implements LoginContract.Repository {
         FirebaseUser user = mAuth.getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> data = new HashMap<>();
-        data.put("name", "");
+        data.put("name", "Empty");
         data.put("email", user.getEmail());
-        data.put("laboratory","");
-        data.put("laboratory_number",0);
-        data.put("phone_number","");
+        data.put("laboratory","Empty");
+        data.put("laboratory_number","Empty");
+        data.put("phone_number","Empty");
         db.collection("users").document(mAuth.getUid()).set(data);
     }
 }

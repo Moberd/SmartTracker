@@ -199,6 +199,26 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
             });
             dialog.show();
         });
+
+        btnEditLabNumber.setOnClickListener(v ->{
+            Dialog dialog = new Dialog(getActivity(), R.style.Dialog);
+            dialog.setContentView(R.layout.edit_dialog_layout);
+            dialog.setTitle("Change Your Location");
+            Button btnSave = dialog.findViewById(R.id.btnSave);
+            EditText editText = dialog.findViewById(R.id.etNew);
+            btnSave.setOnClickListener(dialogV -> {
+                String newText = editText.getText().toString();
+                tvLabNumber.setText(newText);
+                mPresenter.onLabNumberChanged(newText);
+                dialog.dismiss();
+            });
+            Button btnCancel = dialog.findViewById(R.id.btnCancel);
+            btnCancel.setOnClickListener(dialogV -> {
+                dialog.dismiss();
+            });
+            dialog.show();
+        });
+
     }
 
     public void signOutBtn(){
@@ -210,7 +230,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
 
 
     @Override
-    public void showData(String name, String email, String phone, String lab) {
+    public void showData(String name, String email, String phone, String lab, String loc) {
         progressBar.setVisibility(View.GONE);
         rellay1.setVisibility(View.VISIBLE);
         csData.setVisibility(View.VISIBLE);
@@ -218,5 +238,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         tvEmail.setText(email);
         tvPhone.setText(phone);
         tvLab.setText(lab);
+        tvLabNumber.setText(loc);
     }
 }

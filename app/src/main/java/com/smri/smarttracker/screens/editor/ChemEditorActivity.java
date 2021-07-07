@@ -59,6 +59,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
 
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_USER = "user";
+    public static final String APP_PREFERENCES_LOCATION = "laboratory_number";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +93,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
             hideLoading();
             setCreateTime();
             setCreator();
+            setLocation();
             hideDeleteBtn();
         }
         mPresenter.getAutoCompData();
@@ -131,6 +133,11 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         creatorET.setText(userName);
     }
 
+    void setLocation(){
+        String location = mSP.getString(APP_PREFERENCES_LOCATION,"ERROR");
+        locationET.setText(location);
+    }
+
     void setUpListeners(){
         backBtn.setOnClickListener(v -> finish());
         saveBtn.setOnClickListener(v -> {
@@ -168,6 +175,7 @@ public class ChemEditorActivity extends AppCompatActivity implements ChemEditorC
         hideDeleteBtn();
         setCreateTime();
         setCreator();
+        setLocation();
         chem_id.setText(id);
     }
 
